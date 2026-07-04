@@ -1,19 +1,19 @@
 {
  "meta": {
-  "weekEnding": "June 29, 2026",
-  "title": "The DCM Weekly : দেশী Macro",
+  "weekEnding": "July 04, 2026",
+  "title": "DCM Weekly : দেশী Macro",
   "subtitle": "Rates, FX, the External Sector & Global Markets",
-  "preparedBy": "Md. Sohel Rahman",
-  "forAudience": "Industry Professionals Only - Domestic Bangladeshi Market",
-  "headline": "New Monetary Policy declared. The contractionary stance prevails with a new rule to improve credit growth - limiting spread between the deposit and lending rates of commercial banks. The move has been highly crticized already and practitioners believe the central bank will move away from this action."
+  "preparedBy": "M Sohel Rahman, DHAKA, BD",
+  "forAudience": "For Quick Reference Only - Domestic & Global Markets",
+  "headline": "Bangladesh Bank maintains its contractionary policy rate at 10.0% through H1FY27 to anchor inflation—now easing to 9.4% from an 11.7% peak—while unveiling a Tk. 60,000 crore stimulus package aimed at reviving private credit, industrial output, and generating 25 lakh jobs; even as the economy shows a fragile recovery with GDP growth targeted at 6.5%, elevated NPLs near 32%, stable reserves and remittances, sweeping banking-sector reforms, and mounting external risks from Middle East conflict-driven energy and fertilizer price shocks."
  },
  "kpis": [
   {
    "cat": "FX",
    "ind": "Interbank (WAR)",
    "unit": null,
-   "cur": 122.8358,
-   "prev": 122.5,
+   "cur": 122.85,
+   "prev": 122.8358,
    "good": 0,
    "dec": 2,
    "chg": "abs",
@@ -23,7 +23,7 @@
    "cat": "FX",
    "ind": "BC Selling (Prime)",
    "unit": null,
-   "cur": 123.5,
+   "cur": 123.75,
    "prev": 123.5,
    "good": 0,
    "dec": 2,
@@ -34,8 +34,8 @@
    "cat": "Global",
    "ind": "SOFR 3M",
    "unit": "%",
-   "cur": 3.73222,
-   "prev": 3.74427,
+   "cur": 3.75202,
+   "prev": 3.73222,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -45,8 +45,8 @@
    "cat": "Global",
    "ind": "SOFR 6M",
    "unit": "%",
-   "cur": 3.84627,
-   "prev": 3.86478,
+   "cur": 3.87192,
+   "prev": 3.84627,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -56,8 +56,8 @@
    "cat": "Global",
    "ind": "SOFR 12M",
    "unit": "%",
-   "cur": 3.99367,
-   "prev": 4.02163,
+   "cur": 4.02612,
+   "prev": 3.99367,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -67,8 +67,8 @@
    "cat": "Global",
    "ind": "EURIBOR 3M",
    "unit": "%",
-   "cur": 2.291,
-   "prev": 2.1,
+   "cur": 0.02335,
+   "prev": 2.291,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -78,8 +78,8 @@
    "cat": "Global",
    "ind": "EURIBOR 6M",
    "unit": "%",
-   "cur": 2.596,
-   "prev": 2.18,
+   "cur": 0.02565,
+   "prev": 2.596,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -89,8 +89,8 @@
    "cat": "Global",
    "ind": "EURIBOR 12M",
    "unit": "%",
-   "cur": 2.764,
-   "prev": 2.3,
+   "cur": 0.02733,
+   "prev": 2.764,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -122,8 +122,8 @@
    "cat": "Money",
    "ind": "Call Money",
    "unit": "%",
-   "cur": 9.75,
-   "prev": 10.0,
+   "cur": 9.61,
+   "prev": 9.75,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -133,8 +133,8 @@
    "cat": "Govt",
    "ind": "T-Bill 91D",
    "unit": "%",
-   "cur": 9.6985,
-   "prev": 11.2,
+   "cur": 9.4399,
+   "prev": 9.6985,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -144,8 +144,8 @@
    "cat": "Govt",
    "ind": "T-Bill 182D",
    "unit": "%",
-   "cur": 9.89,
-   "prev": 11.35,
+   "cur": 9.7098,
+   "prev": 9.89,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -155,8 +155,8 @@
    "cat": "Govt",
    "ind": "T-Bill 364D",
    "unit": "%",
-   "cur": 9.9255,
-   "prev": 11.5,
+   "cur": 9.74,
+   "prev": 9.9255,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -167,7 +167,7 @@
    "ind": "T-Bond 2Y",
    "unit": "%",
    "cur": 10.43,
-   "prev": 11.55,
+   "prev": 10.43,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -178,7 +178,7 @@
    "ind": "T-Bond 5Y",
    "unit": "%",
    "cur": 10.3502,
-   "prev": 11.25,
+   "prev": 10.3502,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -189,7 +189,7 @@
    "ind": "T-Bond 10Y",
    "unit": "%",
    "cur": 10.24,
-   "prev": 10.2,
+   "prev": 10.24,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -200,7 +200,7 @@
    "ind": "T-Bond 20Y",
    "unit": "%",
    "cur": 10.34,
-   "prev": 10.85,
+   "prev": 10.34,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -243,7 +243,7 @@
    "cat": "Trade",
    "ind": "Export (monthly)",
    "unit": "$bn",
-   "cur": 4.4,
+   "cur": 4.2,
    "prev": 4.4,
    "good": 1,
    "dec": 2,
@@ -254,7 +254,7 @@
    "cat": "Trade",
    "ind": "Remittance (monthly)",
    "unit": "$bn",
-   "cur": 3.43,
+   "cur": 2.816,
    "prev": 3.43,
    "good": 1,
    "dec": 2,
@@ -287,7 +287,7 @@
    "cat": "Commodity",
    "ind": "Gold",
    "unit": "$/oz",
-   "cur": 4000.0,
+   "cur": 4175.0,
    "prev": 4000.0,
    "good": null,
    "dec": 0,
@@ -298,7 +298,7 @@
    "cat": "Commodity",
    "ind": "Oil (Brent)",
    "unit": "$/bbl",
-   "cur": 73.0,
+   "cur": 72.12,
    "prev": 73.0,
    "good": 0,
    "dec": 2,
@@ -321,7 +321,8 @@
    "2026-03-01",
    "2026-04-01",
    "2026-05-01",
-   "2026-06-01"
+   "2026-06-01",
+   "2026-07-01"
   ],
   "Interbank": [
    121.2,
@@ -337,7 +338,8 @@
    122.45,
    122.48,
    122.5,
-   122.75
+   122.75,
+   122.85
   ],
   "BC_Selling": [
    121.8,
@@ -353,7 +355,8 @@
    123.0,
    123.0,
    123.0,
-   123.25
+   123.25,
+   123.75
   ],
   "CallMoney": [
    9.2,
@@ -369,9 +372,11 @@
    9.95,
    10.0,
    10.0,
-   9.9
+   9.9,
+   9.61
   ],
   "Policy": [
+   10,
    10,
    10,
    10,
@@ -401,6 +406,7 @@
    8.71,
    9.04,
    9.42,
+   9.42,
    9.42
   ],
   "Avg12M_Infl": [
@@ -416,6 +422,7 @@
    8.8,
    8.74,
    8.7,
+   8.63,
    8.63,
    8.63
   ],
@@ -433,7 +440,8 @@
    5.65,
    5.6,
    5.8,
-   5.8
+   5.8,
+   null
   ],
   "Export": [
    4.74,
@@ -449,7 +457,8 @@
    4.55,
    4.3,
    4.4,
-   4.4
+   4.4,
+   4.2
   ],
   "Remittance": [
    2.97,
@@ -465,7 +474,8 @@
    2.95,
    3.12,
    3.43,
-   3.43
+   3.43,
+   2.816
   ],
   "Reserve_Gross": [
    31.4,
@@ -480,6 +490,7 @@
    34.1,
    34.4,
    35.11,
+   34.55,
    34.55,
    34.55
   ],
@@ -497,6 +508,7 @@
    29.9,
    30.6,
    30.0,
+   30.0,
    30.0
   ],
   "Gold": [
@@ -513,23 +525,25 @@
    4080,
    4050,
    4000,
-   4000
+   4000,
+   4175
   ],
   "Oil": [
-   80,
-   79,
-   77,
-   76,
-   75,
-   74,
-   73,
-   75,
-   78,
-   80,
-   84,
-   88,
-   85,
-   85
+   80.0,
+   79.0,
+   77.0,
+   76.0,
+   75.0,
+   74.0,
+   73.0,
+   75.0,
+   78.0,
+   80.0,
+   84.0,
+   88.0,
+   85.0,
+   85.0,
+   72.12
   ]
  },
  "commentary": {
@@ -545,17 +559,17 @@
  "commentaryResolved": {
   "fx": [
    {
-    "text": "The taka rose 0.34 to 122.84/USD, with BC selling at 123.50.",
+    "text": "The taka rose 0.01 to 122.85/USD, with BC selling at 123.75.",
     "manual": false
    }
   ],
   "global": [
    {
-    "text": "Term SOFR spans 3.73-3.99% across tenors, while EURIBOR sits lower at 2.29%+.",
+    "text": "Term SOFR spans 3.75-4.03% across tenors, while EURIBOR sits lower at 0.02%+.",
     "manual": false
    },
    {
-    "text": "The 3-month SOFR-EURIBOR gap is 1.44pp, a live input for currency-of-borrowing decisions.",
+    "text": "The 3-month SOFR-EURIBOR gap is 3.73pp, a live input for currency-of-borrowing decisions.",
     "manual": false
    }
   ],
@@ -565,17 +579,17 @@
     "manual": false
    },
    {
-    "text": "Call money fell 0.25pp to 9.75%.",
+    "text": "Call money fell 0.14pp to 9.61%.",
     "manual": false
    }
   ],
   "ycurve": [
    {
-    "text": "The local-currency curve is upward-sloping: the 91-day (9.70%) sits below the 10-year (10.24%).",
+    "text": "The local-currency curve is upward-sloping: the 91-day (9.44%) sits below the 10-year (10.24%).",
     "manual": false
    },
    {
-    "text": "Week-on-week the curve shifted down about 1.00pp on average.",
+    "text": "Week-on-week the curve shifted down about 0.09pp on average.",
     "manual": false
    }
   ],
@@ -591,11 +605,11 @@
   ],
   "external": [
    {
-    "text": "Remittances was little changed at $3.43bn.",
+    "text": "Remittances fell 17.9% to $2.82bn.",
     "manual": false
    },
    {
-    "text": "Exports were $4.40bn against imports of $5.80bn - a trade gap of $1.40bn.",
+    "text": "Exports were $4.20bn against imports of $5.80bn - a trade gap of $1.60bn.",
     "manual": false
    }
   ],
@@ -607,11 +621,11 @@
   ],
   "commodity": [
    {
-    "text": "Gold was little changed at $4,000/oz.",
+    "text": "Gold rose 4.4% to $4,175/oz.",
     "manual": false
    },
    {
-    "text": "Brent was little changed at $73.00/bbl.",
+    "text": "Brent fell 1.2% to $72.12/bbl.",
     "manual": false
    }
   ]
@@ -643,6 +657,18 @@
   }
  ],
  "special": {
-  "points": []
+  "title": "Bangladesh Bank Monetary Policy Statement (H1 FY27) — Summary",
+  "tag": "MPS27H1, Bangladesh Bank, Policy, FY 2026-27",
+  "date": "July 04, 2026",
+  "points": [
+   "Policy rate held at 10.0% (unchanged since Oct 2024); SLF at 11.5%, SDF at 7.5% — contractionary stance continues into H1FY27",
+   "Inflation: eased from 11.7% (Jul 2024) to 9.4% (May 2026); projected to moderate to ~8.9% by Dec 2026",
+   "Growth: FY26 GDP growth ~4.14%; FY27 target 6.5% (BB forecasts 6.1%)",
+   "Tk. 60,000 crore stimulus package for industry, agriculture & CMSMEs — expected to create ~25 lakh jobs",
+   "Private sector credit growth slowed to 5.5% (Jun 2026); projected to recover to 8.0% by Jun 2027",
+   "NPLs remain elevated: gross NPL ratio at 32.26% (Mar 2026); new Bank Resolution Act & Deposit Protection Act 2026 introduced",
+   "External sector strengthened: reserves rose to $31.74B; remittances up 19.07%; exchange rate stable (~BDT 123/USD)",
+   "Key risks: Middle East conflict, energy/fertilizer price shocks, high NPLs, weak private investment"
+  ]
  }
 }
