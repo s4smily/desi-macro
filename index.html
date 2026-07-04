@@ -30,6 +30,16 @@ nav.subnav a:hover{color:var(--gold)}
 h2{font-family:Georgia,serif;color:var(--navy);font-size:25px;margin:6px 0 12px}
 .eyebrow{color:var(--gold);font-weight:700;letter-spacing:.1em;font-size:11.5px;text-transform:uppercase;margin-top:8px}
 .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 8px}
+.dash-group{margin:14px 0 4px;display:block;clear:both}
+.dash-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:100%}
+.dash-group-hd{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.dash-group-hd .lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);white-space:nowrap}
+.dash-group-hd .rule{height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+.dash-group-hd .tag{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;background:var(--icebg);color:var(--muted)}
+.dash-group-hd .tag.lv{background:#E4F5EC;color:var(--good)}
+.dash-group-hd .tag.lv::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:5px;animation:pulse 2s infinite}
+.dash-grid>.tile{min-width:0}
 .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .tile{position:relative;background:var(--icebg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px rgba(30,39,97,.06)}
 .tdot{width:10px;height:10px;border-radius:50%;position:absolute;top:14px;left:14px}
@@ -111,7 +121,7 @@ table.mkt tr:hover td{background:var(--icebg)}
 .err-row td{color:var(--bad);text-align:center!important;font-weight:600}
 footer.foot{margin-top:34px;background:var(--deep);color:#cdd3ea;border-radius:12px;padding:20px 22px;font-size:12.5px;line-height:1.55}
 footer.foot b{color:#fff}
-@media(max-width:820px){.dash{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.hmeta .clocks{display:none}}
+@media(max-width:820px){.dash{grid-template-columns:repeat(2,1fr)}.dash-grid{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.hmeta .clocks{display:none}}
 @media print{nav.subnav,.toolbar .btn{display:none}body{background:#fff}.sec{break-inside:avoid}}
 </style></head>
 <body>
@@ -393,6 +403,23 @@ function liveTile(label,valHTML,chgHTML2){
 }
 const byInd=n=>D.kpis.find(k=>k.ind===n)||{};
 
+/* Executive Dashboard — the essentials only, one clean even grid.
+   Everything else lives in the detailed sections below. */
+function renderDashboard(){
+  const essentials=[
+    "Policy (Repo) Rate","P2P Inflation","Interbank (WAR)",
+    "Reserve Gross","Remittance (monthly)","SOFR 3M"
+  ];
+  const tiles=essentials
+    .filter(n=>D.kpis.some(k=>k.ind===n))
+    .map(n=>tile(byInd(n))).join("");
+  // two live headline tiles
+  const live=
+    `<div class="tile" id="lt-bdt"><span class="tdot lv"></span><div class="tlab">USD/BDT (live ref)</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`+
+    `<div class="tile" id="lt-btc"><span class="tdot lv"></span><div class="tlab">Bitcoin</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`;
+  $("dash-tiles").innerHTML=tiles+live;
+}
+
 function renderWeekly(){
   $("h-title").textContent=D.meta.title||"দেশী Macro";
   $("h-sub").textContent=D.meta.subtitle||"";
@@ -401,10 +428,8 @@ function renderWeekly(){
   $("h-prep").textContent=D.meta.preparedBy||"";
   $("f-prep").textContent=D.meta.preparedBy||"";
   $("h-headline").textContent = D.meta.headline || autoHeadline();
-  // dashboard tiles (weekly, flagged OnDashboard) — live tiles appended by live layer
-  $("dash-tiles").innerHTML = D.kpis.filter(k=>k.dash).map(k=>tile(k)).join("") +
-    `<div class="tile" id="lt-bdt"><span class="tdot lv"></span><div class="tlab">USD/BDT (live ref)</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`+
-    `<div class="tile" id="lt-btc"><span class="tdot lv"></span><div class="tlab">Bitcoin</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`;
+  // dashboard — grouped into labelled clusters for structure
+  renderDashboard();
   // special — shows ONLY when the Excel Special sheet has a title
   // (reserved for occasional events: Monetary Policy, new BB/BSEC rules, etc.)
   if(D.special && (D.special.title||"").trim()){
