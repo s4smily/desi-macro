@@ -549,10 +549,10 @@
  "commentary": {
   "fx": "",
   "global": "",
-  "rates": "",
-  "ycurve": "",
-  "inflation": "",
-  "external": "",
+  "rates": "The Bangladesh Bank has lowered its private sector credit growth target to 6.8% for December under its Monetary Policy Statement for the first half of FY2026-27.",
+  "ycurve": "Bangladesh Bank (BB) has capped the maximum Merchant Discount Rate (MDR) at one percent, including VAT, for government revenue and fee collection through the Bangla QR payment system to promote affordable and wider use of digital payments.",
+  "inflation": "The Bangladesh Bank’s (BB) own inflation model is running well ahead of its own expectations, projecting price growth near 9 percent through mid-2027, even as its official ceiling sits at 7.5 percent for the upcoming fiscal year 2026-27, according to BRAC EPL Stock Brokerage.",
+  "external": "According to the latest data with Bangladesh Bank (BB), with June's provisional count of $2.80 billion the total remittance netting in FY26 came to $35.56 billion, $5.23-billion higher from the FY'25 receipt.",
   "reserves": "",
   "commodity": ""
  },
@@ -575,6 +575,10 @@
   ],
   "rates": [
    {
+    "text": "The Bangladesh Bank has lowered its private sector credit growth target to 6.8% for December under its Monetary Policy Statement for the first half of FY2026-27.",
+    "manual": true
+   },
+   {
     "text": "The repo rate is 10.00%, the Bank Rate 4.00%.",
     "manual": false
    },
@@ -584,6 +588,10 @@
    }
   ],
   "ycurve": [
+   {
+    "text": "Bangladesh Bank (BB) has capped the maximum Merchant Discount Rate (MDR) at one percent, including VAT, for government revenue and fee collection through the Bangla QR payment system to promote affordable and wider use of digital payments.",
+    "manual": true
+   },
    {
     "text": "The local-currency curve is upward-sloping: the 91-day (9.44%) sits below the 10-year (10.24%).",
     "manual": false
@@ -595,6 +603,10 @@
   ],
   "inflation": [
    {
+    "text": "The Bangladesh Bank’s (BB) own inflation model is running well ahead of its own expectations, projecting price growth near 9 percent through mid-2027, even as its official ceiling sits at 7.5 percent for the upcoming fiscal year 2026-27, according to BRAC EPL Stock Brokerage.",
+    "manual": true
+   },
+   {
     "text": "Point-to-point inflation was unchanged at 9.42%.",
     "manual": false
    },
@@ -604,6 +616,10 @@
    }
   ],
   "external": [
+   {
+    "text": "According to the latest data with Bangladesh Bank (BB), with June's provisional count of $2.80 billion the total remittance netting in FY26 came to $35.56 billion, $5.23-billion higher from the FY'25 receipt.",
+    "manual": true
+   },
    {
     "text": "Remittances fell 17.9% to $2.82bn.",
     "manual": false
