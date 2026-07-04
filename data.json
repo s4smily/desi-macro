@@ -67,7 +67,7 @@
    "cat": "Global",
    "ind": "EURIBOR 3M",
    "unit": "%",
-   "cur": 0.02335,
+   "cur": 2.335,
    "prev": 2.291,
    "good": null,
    "dec": 2,
@@ -78,7 +78,7 @@
    "cat": "Global",
    "ind": "EURIBOR 6M",
    "unit": "%",
-   "cur": 0.02565,
+   "cur": 2.565,
    "prev": 2.596,
    "good": null,
    "dec": 2,
@@ -89,7 +89,7 @@
    "cat": "Global",
    "ind": "EURIBOR 12M",
    "unit": "%",
-   "cur": 0.02733,
+   "cur": 2.733,
    "prev": 2.764,
    "good": null,
    "dec": 2,
@@ -565,11 +565,11 @@
   ],
   "global": [
    {
-    "text": "Term SOFR spans 3.75-4.03% across tenors, while EURIBOR sits lower at 0.02%+.",
+    "text": "Term SOFR spans 3.75-4.03% across tenors, while EURIBOR sits lower at 2.33%+.",
     "manual": false
    },
    {
-    "text": "The 3-month SOFR-EURIBOR gap is 3.73pp, a live input for currency-of-borrowing decisions.",
+    "text": "The 3-month SOFR-EURIBOR gap is 1.42pp, a live input for currency-of-borrowing decisions.",
     "manual": false
    }
   ],

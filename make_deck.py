@@ -67,7 +67,7 @@ def text(slide,x,y,w,h,runs,align=PP_ALIGN.LEFT,anchor=MSO_ANCHOR.TOP,
         first=False; p.alignment=align
         if space: p.space_after=Pt(space)
         for t,st in (line if isinstance(line,list) else [line]):
-            r=p.add_run(); r.text=t
+            r=p.add_run(); r.text="" if t is None else str(t)
             r.font.name=st.get("font",font); r.font.size=Pt(st.get("sz",14))
             r.font.bold=st.get("b",False); r.font.italic=st.get("i",False)
             r.font.color.rgb=st.get("c",INK)
@@ -338,20 +338,57 @@ def commodity_slide(prs,blank,lab,S,kpis,takeaways):
     takeaway_block(s,takeaways,2.93)
 
 def special_slide(prs,blank,sp):
+    pts=list(sp.get("points",[]))
+    # Split into chunks that each fit one slide (approx 6 medium bullets).
+    # Estimate slots per slide from average length.
+    def slots_for(chunk):
+        card_top=1.95; card_bottom_max=6.9; avail=card_bottom_max-card_top-0.55
+        for fs in (14,13,12,11,10):
+            wrap=int(95*14/fs); lh=0.026*fs
+            h=sum(lh*(int(len(str(p))/wrap)+1)+0.30 for p in chunk)
+            if h<=avail: return fs,wrap
+        return 10,int(95*14/10)
+    # greedily pack points into slides
+    slides=[]; cur=[]
+    for p in pts:
+        trial=cur+[p]
+        card_top=1.95; avail=6.9-card_top-0.55
+        fs=10; wrap=int(95*14/fs); lh=0.026*fs
+        h=sum(lh*(int(len(str(x))/wrap)+1)+0.30 for x in trial)
+        if h>avail and cur:
+            slides.append(cur); cur=[p]
+        else:
+            cur=trial
+    if cur: slides.append(cur)
+    if not slides: slides=[[]]
+    total=len(slides)
+    for i,chunk in enumerate(slides):
+        _special_one(prs,blank,sp,chunk,cont=(i>0),
+                     part=(f"  (cont. {i+1}/{total})" if total>1 else ""))
+
+def _special_one(prs,blank,sp,pts,cont=False,part=""):
     s=prs.slides.add_slide(blank); box(s,0,0,13.333,7.5,fill=WHITE)
     dot=s.shapes.add_shape(MSO_SHAPE.OVAL,Inches(0.5),Inches(0.62),Inches(0.16),Inches(0.16)); solid(dot,GOLD)
     tag=" · ".join([x for x in ["SPECIAL ISSUE",sp.get("tag"),sp.get("date")] if x])
-    text(s,0.74,0.50,9.0,0.34,[[R(tag.upper(),sz=12,b=True,c=GOLD)]])
-    text(s,0.48,0.84,12.2,0.8,[[R(sp["title"],font=HEAD_FONT,sz=28,b=True,c=NAVY)]])
-    # navy briefing card with gold left edge
-    card=box(s,0.5,1.95,12.33,4.6,fill=DEEP,radius=True)
-    edge=box(s,0.5,1.95,0.12,4.6,fill=GOLD)
-    text(s,0.9,2.2,11.0,0.3,[[R("ANALYST BRIEFING",sz=11,b=True,c=GOLD)]])
-    y=2.75
-    for p in sp.get("points",[]):
-        text(s,0.9,y,0.3,0.4,[[R("◆",sz=12,c=GOLD)]])
-        text(s,1.25,y,11.2,0.8,[[R(p,sz=14,c=ICE)]])
-        y+=0.30*(int(len(p)/95)+1)+0.28
+    text(s,0.74,0.50,9.0,0.34,[[R(tag.upper()+part,sz=12,b=True,c=GOLD)]])
+    title=sp["title"]+(" (continued)" if cont else "")
+    text(s,0.48,0.84,12.2,0.8,[[R(title,font=HEAD_FONT,sz=28,b=True,c=NAVY)]])
+
+    card_top=1.95; card_bottom_max=6.9; avail=card_bottom_max-card_top-0.55
+    for fs in (14,13,12,11,10):
+        wrap=int(95*14/fs); lh=0.026*fs
+        used=sum(lh*(int(len(str(p))/wrap)+1)+0.30 for p in pts)
+        if used<=avail: break
+    card_h=min(card_bottom_max-card_top, 0.55+used+0.15)
+    box(s,0.5,card_top,12.33,card_h,fill=DEEP,radius=True)
+    box(s,0.5,card_top,0.12,card_h,fill=GOLD)
+    text(s,0.9,card_top+0.22,11.0,0.3,[[R("ANALYST BRIEFING",sz=11,b=True,c=GOLD)]])
+    y=card_top+0.72; lh=0.026*fs
+    for p in pts:
+        nlines=int(len(str(p))/wrap)+1
+        text(s,0.9,y,0.3,0.4,[[R("◆",sz=min(fs,12),c=GOLD)]])
+        text(s,1.25,y,11.2,lh*nlines+0.2,[[R(p,sz=fs,c=ICE)]])
+        y+=lh*nlines+0.30
     text(s,0.5,7.06,6.0,0.3,[[R(FOOT,sz=9,c=MUTED)]])
     text(s,11.0,7.06,1.83,0.3,[[R("Internal Usage Only",sz=9,c=MUTED)]],align=PP_ALIGN.RIGHT)
 
