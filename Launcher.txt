@@ -1,4 +1,0 @@
-python build_all.py bd_macro_data.xlsx
-git add -A
-git commit -m "Weekly update"
-git push
