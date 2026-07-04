@@ -1,0 +1,708 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCM Weekly : দেশী Macro — Bangladesh & Global Markets</title>
+<meta name="description" content="Bangladesh macro dashboard: FX, rates, yield curve, inflation, trade, reserves and live global markets for treasury professionals, asset managers and investors.">
+<style>
+:root{--navy:#1E2761;--deep:#12163A;--gold:#C9A227;--good:#1E8E5A;--bad:#C0392B;
+--ice:#CADCFC;--icebg:#EEF3FC;--ink:#23273B;--muted:#6B7280;--line:#DDE2EC;--live:#1E8E5A;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#F6F8FC}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px}
+header.hero{background:var(--deep);color:#fff;padding:30px 0 26px}
+.hero .wrap{padding-bottom:0}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:12px}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:40px;margin:6px 0 4px}
+.hero .sub{color:var(--ice);font-style:italic;font-size:17px;margin-bottom:14px}
+.hbox{background:#1A2052;border-radius:10px;padding:14px 18px;color:var(--ice);font-size:14.5px;line-height:1.5}
+.hmeta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:14px;font-size:13px;color:#cdd3ea}
+.hmeta b{color:#fff}
+.hmeta .clocks b{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:600;letter-spacing:.02em}
+nav.subnav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);
+box-shadow:0 1px 6px rgba(20,30,80,.05);overflow-x:auto;white-space:nowrap}
+nav.subnav .wrap{padding:0 20px}
+nav.subnav a{display:inline-block;padding:13px 12px;color:var(--navy);text-decoration:none;font-size:13.5px;font-weight:600}
+nav.subnav a:hover{color:var(--gold)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:22px 0 6px}
+.legendnote{font-size:12.5px;color:var(--muted)}
+.legendnote i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px;vertical-align:middle}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:8px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.btn:hover{background:#26306f}
+h2{font-family:Georgia,serif;color:var(--navy);font-size:25px;margin:6px 0 12px}
+.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.1em;font-size:11.5px;text-transform:uppercase;margin-top:8px}
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 8px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{position:relative;background:var(--icebg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px rgba(30,39,97,.06)}
+.tdot{width:10px;height:10px;border-radius:50%;position:absolute;top:14px;left:14px}
+.tdot.wk{background:var(--gold)} .tdot.lv{background:var(--live);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(30,142,90,.5)}50%{box-shadow:0 0 0 5px rgba(30,142,90,0)}}
+@media (prefers-reduced-motion:reduce){.tdot.lv{animation:none}}
+.tlab{color:var(--muted);font-weight:700;font-size:12px;margin-left:18px}
+.tval{font-family:Georgia,serif;color:var(--navy);font-weight:700;font-size:23px;margin-top:4px}
+.chg{font-weight:700;font-size:12.5px;margin-top:3px}
+.chg.good{color:var(--good)}.chg.bad{color:var(--bad)}.chg.neutral{color:var(--muted)}
+.sec{padding-top:18px;border-top:1px solid var(--line);margin-top:26px}
+/* two-column section grid: chart card left, analysis column right, equal top */
+.grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;
+box-shadow:0 1px 6px rgba(20,30,80,.05);display:flex;flex-direction:column}
+.card.chartcard{min-height:360px}
+.card-title{font-weight:700;color:var(--navy);font-size:14px;margin:0 0 8px}
+.chart{width:100%;height:auto;display:block;flex:1}
+.ytick{fill:var(--muted);font-size:11px;text-anchor:end}
+.xtick{fill:var(--muted);font-size:11px;text-anchor:middle}
+.chart{cursor:crosshair}
+.cx-line{stroke:var(--navy);stroke-width:1;stroke-dasharray:4 3;opacity:.55}
+.cx-dot{stroke:#fff;stroke-width:1.5}
+#tip{position:fixed;pointer-events:none;background:#fff;border:1px solid var(--line);
+box-shadow:0 6px 18px rgba(20,30,80,.18);border-radius:8px;padding:9px 11px;font-size:12.5px;
+display:none;z-index:60;min-width:120px}
+#tip .tt-date{font-weight:700;color:var(--navy);margin-bottom:5px;font-size:12px}
+#tip .tt-row{display:flex;align-items:center;gap:7px;margin:3px 0;justify-content:space-between}
+#tip .tt-l{display:flex;align-items:center;gap:6px}
+#tip .tt-l i{width:9px;height:9px;border-radius:50%;display:inline-block}
+#tip .tt-v{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:8px}
+.leg{font-size:13px;font-weight:600;color:var(--ink)}
+.leg i{display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+/* right analysis column */
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.side .take{color:var(--gold);font-weight:700;letter-spacing:.08em;font-size:11px;text-transform:uppercase;margin:2px 0 0}
+.statrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--icebg);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.stat .lab{color:var(--muted);font-weight:700;font-size:11px}
+.stat .val{font-family:Georgia,serif;color:var(--navy);font-weight:700;font-size:20px;margin-top:3px}
+.stat .d{font-size:11.5px;font-weight:700;margin-top:2px}
+/* commentary block: auto + manual unified */
+.commentary{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.commentary .take{margin-bottom:7px}
+.commentary ul{margin:0;padding-left:0;list-style:none}
+.commentary li{position:relative;padding-left:20px;margin:7px 0;line-height:1.5;font-size:13.5px;color:var(--ink)}
+.commentary li::before{content:"▪";position:absolute;left:2px;color:var(--gold);font-size:12px;top:1px}
+.commentary li.manual{padding:9px 12px 9px 30px;background:#FBF6E6;border-radius:8px;
+font-weight:600;color:var(--navy);margin:6px 0}
+.commentary li.manual::before{content:"◆";left:12px;top:9px}
+.bul{margin:0;padding-left:18px}.bul li{margin:7px 0;line-height:1.45;font-size:14px}
+.specialcard{background:var(--deep);color:#fff;border-radius:14px;padding:20px 26px;position:relative;overflow:hidden}
+.specialcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--gold)}
+.specialcard .sbrief{color:var(--gold);font-weight:700;letter-spacing:.08em;font-size:11.5px;text-transform:uppercase;margin-bottom:10px}
+.specialcard h2{color:#fff}
+.sbul{margin:0;padding-left:4px;list-style:none}.sbul li{position:relative;padding-left:22px;margin:9px 0;line-height:1.5;font-size:14.5px;color:#EAF0FF}
+.sbul li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:12px;top:2px}
+table.cal{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:14px}
+table.cal td{padding:12px 16px;background:var(--icebg)}
+table.cal td:first-child{border-radius:8px 0 0 8px}
+table.cal td:last-child{border-radius:0 8px 8px 0}
+.cdate{color:var(--gold);font-weight:700;width:140px}
+.flag{display:inline-block;width:19px;height:13px;margin-right:7px;border-radius:2px;
+vertical-align:middle;box-shadow:0 0 0 1px rgba(0,0,0,.08);object-fit:cover}
+/* live tables */
+table.mkt{width:100%;border-collapse:collapse;font-size:13.5px}
+table.mkt th{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;text-align:right;padding:8px 10px;border-bottom:2px solid var(--line)}
+table.mkt td{padding:8px 10px;border-bottom:1px solid var(--icebg);text-align:right;font-variant-numeric:tabular-nums}
+table.mkt th:first-child,table.mkt td:first-child{text-align:left}
+table.mkt td:first-child{font-weight:700;color:var(--navy)}
+table.mkt tr:hover td{background:var(--icebg)}
+.up{color:var(--good);font-weight:700}.dn{color:var(--bad);font-weight:700}.nt{color:var(--muted)}
+.badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;border-radius:20px;padding:3px 9px;vertical-align:middle;margin-left:8px}
+.badge.lv{background:#E4F5EC;color:var(--good)}
+.badge.lv::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--live);margin-right:5px;animation:pulse 2s infinite}
+.badge.wk{background:#FBF6E6;color:#8a6d0f}
+.srcline{font-size:11.5px;color:var(--muted);margin-top:8px}
+.err-row td{color:var(--bad);text-align:center!important;font-weight:600}
+footer.foot{margin-top:34px;background:var(--deep);color:#cdd3ea;border-radius:12px;padding:20px 22px;font-size:12.5px;line-height:1.55}
+footer.foot b{color:#fff}
+@media(max-width:820px){.dash{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.hmeta .clocks{display:none}}
+@media print{nav.subnav,.toolbar .btn{display:none}body{background:#fff}.sec{break-inside:avoid}}
+</style></head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="kick">BANGLADESH MACRO</div>
+  <h1 id="h-title">দেশী Macro</h1>
+  <div class="sub" id="h-sub"></div>
+  <div class="hbox" id="h-headline">Loading weekly briefing…</div>
+  <div class="hmeta">
+    <span>Week ending <b id="h-week">—</b> &nbsp;·&nbsp; <span id="h-aud"></span></span>
+    <span class="clocks" id="clocks">
+      DHAKA <b id="clk-dhk">--:--:--</b> &nbsp; LONDON <b id="clk-ldn">--:--:--</b> &nbsp; NEW YORK <b id="clk-nyc">--:--:--</b>
+    </span>
+    <span>Prepared by <b id="h-prep"></b></span>
+  </div>
+</div></header>
+
+<nav class="subnav"><div class="wrap">
+  <a href="#dash">Dashboard</a><a href="#special" id="nav-special">Special</a><a href="#fx">FX</a>
+  <a href="#global">Global Rates</a><a href="#rates">Domestic Rates</a><a href="#ycurve">Yield Curve</a>
+  <a href="#inflation">Inflation</a><a href="#gdp">GDP Growth</a><a href="#external">Trade &amp; Remittances</a><a href="#reserves">Reserves</a>
+  <a href="#commodity">Commodities</a><a href="#calendar">Calendar</a>
+</div></nav>
+
+<div class="wrap">
+
+<div class="toolbar">
+  <div class="legendnote"><i style="background:var(--live)"></i><b>Live</b> — auto-refreshes every 5 min
+    <i style="background:var(--gold)"></i><b>Weekly</b> — updated each week from official releases</div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span class="legendnote">Next live refresh: <b id="countdown">—</b>s</span>
+    <button class="btn" id="refreshBtn" type="button">⟳ Refresh live data</button>
+  </div>
+</div>
+
+<!-- ============ EXECUTIVE DASHBOARD ============ -->
+<section id="dash">
+  <div class="eyebrow">At a glance</div>
+  <h2>Executive Dashboard</h2>
+  <div class="dash" id="dash-tiles"></div>
+</section>
+
+<!-- ============ SPECIAL ============ -->
+<section class="sec" id="special" style="display:none">
+  <div class="specialcard">
+    <div class="sbrief" id="sp-tag"></div>
+    <h2 id="sp-title" style="margin-top:0"></h2>
+    <ul class="sbul" id="sp-points"></ul>
+  </div>
+</section>
+
+<!-- ============ FX ============ -->
+<section class="sec" id="fx">
+  <div class="eyebrow">Currency</div>
+  <h2>FX &amp; Exchange Rates <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Exchange rate: interbank (WAR) vs BC selling</div><div id="ch-fx"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Interbank (WAR)</span>
+      <span class="leg"><i style="background:#C9A227"></i>BC Selling</span></div></div>
+    <div class="side">
+      <div class="statrow" id="fx-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-fx"></ul></div>
+      <div class="take">Taka crosses <span class="badge lv">LIVE</span></div>
+      <div class="card"><table class="mkt"><thead><tr><th>Cross</th><th>Rate (৳)</th></tr></thead>
+        <tbody id="tb-bdt"><tr><td colspan="2" class="nt">Connecting…</td></tr></tbody></table>
+        <div class="srcline">Reference mid-rates · open.er-api.com · indicative, not interbank quotes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GLOBAL ============ -->
+<section class="sec" id="global">
+  <div class="eyebrow">Global funding</div>
+  <h2>Global Reference Rates <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Global reference rates by tenor (%)</div><div id="ch-global"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>SOFR</span>
+      <span class="leg"><i style="background:#C9A227"></i>EURIBOR</span></div></div>
+    <div class="side">
+      <div class="statrow" id="global-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-global"></ul></div>
+      <div class="take">Major currencies vs USD <span class="badge lv">LIVE</span></div>
+      <div class="card"><table class="mkt"><thead><tr><th>Pair</th><th>Last</th><th>Δ 1W</th></tr></thead>
+        <tbody id="tb-fxmaj"><tr><td colspan="3" class="nt">Connecting…</td></tr></tbody></table>
+        <div class="srcline">ECB reference rates · frankfurter.dev · updates each business day</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOMESTIC RATES ============ -->
+<section class="sec" id="rates">
+  <div class="eyebrow">Policy &amp; money markets</div>
+  <h2>Domestic Rates <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Call money vs policy repo rate (%)</div><div id="ch-rates"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Call Money</span>
+      <span class="leg"><i style="background:#C9A227"></i>Policy (Repo)</span></div></div>
+    <div class="side">
+      <div class="statrow" id="rates-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-rates"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YIELD CURVE ============ -->
+<section class="sec" id="ycurve">
+  <div class="eyebrow">Government securities</div>
+  <h2>Yield Curve <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Government securities yield curve (%)</div><div id="ch-yc"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>This week</span>
+      <span class="leg"><i style="background:#C9A227"></i>Last week</span></div></div>
+    <div class="side">
+      <div class="statrow" id="yc-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-ycurve"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFLATION ============ -->
+<section class="sec" id="inflation">
+  <div class="eyebrow">Prices</div>
+  <h2>Inflation <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Inflation: point-to-point vs 12-month average (%)</div><div id="ch-infl"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Point-to-point</span>
+      <span class="leg"><i style="background:#C9A227"></i>12-month avg</span></div></div>
+    <div class="side">
+      <div class="statrow" id="infl-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-inflation"></ul></div>
+      <div class="take">Regional comparison <span class="badge lv">LIVE</span></div>
+      <div class="card"><table class="mkt"><thead><tr><th>Economy</th><th>Yr</th><th>CPI %</th></tr></thead>
+        <tbody id="tb-cpi"><tr><td colspan="3" class="nt">Connecting…</td></tr></tbody></table>
+        <div class="srcline">World Bank Open Data · latest annual</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GDP GROWTH ============ -->
+<section class="sec" id="gdp">
+  <div class="eyebrow">Growth</div>
+  <h2>Real GDP Growth <span class="badge lv">LIVE</span></h2>
+  <div class="grid">
+    <div class="card chartcard">
+      <div class="card-title">Real GDP growth, latest available (%)</div>
+      <table class="mkt"><thead><tr><th>Economy</th><th>Year</th><th>Growth</th><th></th></tr></thead>
+        <tbody id="tb-gdp"><tr><td colspan="4" class="nt">Connecting…</td></tr></tbody></table>
+      <div class="srcline">World Bank Open Data · NY.GDP.MKTP.KD.ZG · Bangladesh pinned &amp; highlighted</div>
+    </div>
+    <div class="side">
+      <div class="commentary"><div class="take">On growth</div><ul id="note-gdp"></ul></div>
+      <div class="srcline" style="padding:2px 4px">Figures are the latest World Bank annual outturn/estimate per economy. The World Bank publishes growth estimates and near-term projections; where a projection is the most recent value, it is shown as the latest point.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXTERNAL ============ -->
+<section class="sec" id="external">
+  <div class="eyebrow">Inflows &amp; trade</div>
+  <h2>Trade &amp; Remittances <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Trade &amp; remittances, monthly ($bn)</div><div id="ch-ext"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Import</span>
+      <span class="leg"><i style="background:#C9A227"></i>Export</span>
+      <span class="leg"><i style="background:#1E8E5A"></i>Remittance</span></div></div>
+    <div class="side">
+      <div class="statrow" id="ext-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-external"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVES ============ -->
+<section class="sec" id="reserves">
+  <div class="eyebrow">External buffer</div>
+  <h2>Foreign Exchange Reserves <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Foreign exchange reserves ($bn)</div><div id="ch-res"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Gross</span>
+      <span class="leg"><i style="background:#C9A227"></i>BPM6</span></div></div>
+    <div class="side">
+      <div class="statrow" id="res-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-reserves"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMODITIES ============ -->
+<section class="sec" id="commodity">
+  <div class="eyebrow">Global markets</div>
+  <h2>Commodities &amp; Digital Assets <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard">
+      <div><div class="card-title">Gold ($/oz)</div><div id="ch-gold"></div></div>
+      <div style="margin-top:12px"><div class="card-title">Brent crude ($/bbl)</div><div id="ch-oil"></div></div>
+    </div>
+    <div class="side">
+      <div class="statrow" id="cmd-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-commodity"></ul></div>
+      <div class="take">Live prices <span class="badge lv">LIVE</span></div>
+      <div class="card"><table class="mkt"><thead><tr><th>Asset</th><th>USD</th><th>Δ 24H</th></tr></thead>
+        <tbody id="tb-cx"><tr><td colspan="3" class="nt">Connecting…</td></tr></tbody></table>
+        <div class="srcline">CoinGecko · gold shown via PAXG (gold-backed token) as spot proxy</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section class="sec" id="calendar">
+  <div class="eyebrow">Looking ahead</div>
+  <h2>Data Calendar &amp; Watch</h2>
+  <table class="cal"><tbody id="cal-rows"></tbody></table>
+</section>
+
+<footer class="foot">
+  <b>Sources.</b> Bangladesh Bank (FX, reserves, policy &amp; market rates, remittances); BBS (CPI); EPB (trade).
+  Global weekly: CME Group (Term SOFR), EMMI (EURIBOR), LBMA/ICE (gold, Brent).
+  Live feeds: ECB via frankfurter.dev, open.er-api.com, CoinGecko, World Bank Open Data.<br><br>
+  <b>Disclaimer.</b> Figures are point-in-time, indicative and subject to revision. Live rates are reference data,
+  not tradeable quotes. Nothing here is investment advice, an offer, or a solicitation. Verify against primary
+  sources before acting. © <span id="yr"></span> — <span id="f-prep"></span>.
+  <div class="srcline" id="stamp" style="color:#8f97b8"></div>
+</footer>
+
+</div>
+
+<div id="tip"></div>
+
+<script>
+"use strict";
+/* ================================================================
+   DCM WEEKLY HYBRID ENGINE
+   Weekly numbers  -> data.json  (generated from your Excel by make_data.py)
+   Live numbers    -> free public APIs, refreshed every 5 minutes
+   ================================================================ */
+const CONFIG = {
+  refreshSeconds: 300,
+  bdtCrosses: ["USD","EUR","GBP","SAR","AED","MYR","SGD","INR","JPY","CNY"],
+  fxMajors: ["EUR","GBP","JPY","CNY","INR","CHF","AUD","SGD"],
+  cryptoIds: "bitcoin,ethereum,tether,pax-gold",
+  wbCountries: "BGD;IND;PAK;LKA;VNM;MYS;CHN;USA",
+  wbGdpIndicator: "NY.GDP.MKTP.KD.ZG"   // real GDP growth (annual %)
+};
+const FALLBACK_DATA = {"meta": {"weekEnding": "June 29, 2026", "title": "DCM Weekly : দেশী Macro", "subtitle": "Rates, FX, the External Sector & Global Markets", "preparedBy": "Md. Sohel Rahman, Debt Capital Market", "forAudience": "For Prime Bank Officials - Internal Usage Only", "headline": "New Monetary Policy declared. The contractionary stance prevails with a new rule to improve credit growth - limiting spread between the deposit and lending rates of commercial banks. The move has been highly crticized already and practitioners believe the central bank will move away from this action."}, "kpis": [{"cat": "FX", "ind": "Interbank (WAR)", "unit": null, "cur": 122.8358, "prev": 122.5, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "FX", "ind": "BC Selling (Prime)", "unit": null, "cur": 123.5, "prev": 123.5, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 3M", "unit": "%", "cur": 3.73222, "prev": 3.74427, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 6M", "unit": "%", "cur": 3.84627, "prev": 3.86478, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "SOFR 12M", "unit": "%", "cur": 3.99367, "prev": 4.02163, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 3M", "unit": "%", "cur": 2.291, "prev": 2.1, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 6M", "unit": "%", "cur": 2.596, "prev": 2.18, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 12M", "unit": "%", "cur": 2.764, "prev": 2.3, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Policy (Repo) Rate", "unit": "%", "cur": 10.0, "prev": 10.0, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Money", "ind": "Bank Rate", "unit": "%", "cur": 4.0, "prev": 4.0, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Call Money", "unit": "%", "cur": 9.75, "prev": 10.0, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 91D", "unit": "%", "cur": 9.6985, "prev": 11.2, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 182D", "unit": "%", "cur": 9.89, "prev": 11.35, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bill 364D", "unit": "%", "cur": 9.9255, "prev": 11.5, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 2Y", "unit": "%", "cur": 10.43, "prev": 11.55, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 5Y", "unit": "%", "cur": 10.3502, "prev": 11.25, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 10Y", "unit": "%", "cur": 10.24, "prev": 10.2, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bond 20Y", "unit": "%", "cur": 10.34, "prev": 10.85, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Inflation", "ind": "P2P Inflation", "unit": "%", "cur": 9.42, "prev": 9.42, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Inflation", "ind": "Inflation (12M avg)", "unit": "%", "cur": 8.63, "prev": 8.63, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Trade", "ind": "Import (monthly)", "unit": "$bn", "cur": 5.8, "prev": 5.8, "good": null, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Export (monthly)", "unit": "$bn", "cur": 4.4, "prev": 4.4, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Remittance (monthly)", "unit": "$bn", "cur": 3.43, "prev": 3.43, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Reserves", "ind": "Reserve Gross", "unit": "$bn", "cur": 36.08, "prev": 36.08, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Reserves", "ind": "Reserve BPM6", "unit": "$bn", "cur": 31.53, "prev": 31.53, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Commodity", "ind": "Gold", "unit": "$/oz", "cur": 4000.0, "prev": 4000.0, "good": null, "dec": 0, "chg": "pct", "dash": true}, {"cat": "Commodity", "ind": "Oil (Brent)", "unit": "$/bbl", "cur": 73.0, "prev": 73.0, "good": 0, "dec": 2, "chg": "pct", "dash": true}], "series": {"dates": ["2025-05-01", "2025-06-01", "2025-07-01", "2025-08-01", "2025-09-01", "2025-10-01", "2025-11-01", "2025-12-01", "2026-01-01", "2026-02-01", "2026-03-01", "2026-04-01", "2026-05-01", "2026-06-01"], "Interbank": [121.2, 121.4, 121.6, 121.8, 122.0, 122.1, 122.2, 122.3, 122.35, 122.4, 122.45, 122.48, 122.5, 122.75], "BC_Selling": [121.8, 122.0, 122.2, 122.4, 122.55, 122.65, 122.75, 122.85, 122.9, 122.95, 123.0, 123.0, 123.0, 123.25], "CallMoney": [9.2, 9.4, 9.8, 10.1, 9.95, 10.0, 10.05, 10.1, 10.05, 10.0, 9.95, 10.0, 10.0, 9.9], "Policy": [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], "P2P_Infl": [9.05, 8.48, 8.55, 8.29, 8.1, 8.2, 7.95, 8.3, 8.58, 9.13, 8.71, 9.04, 9.42, 9.42], "Avg12M_Infl": [10.2, 10.05, 9.9, 9.7, 9.5, 9.3, 9.1, 8.95, 8.85, 8.8, 8.74, 8.7, 8.63, 8.63], "Import": [5.3, 5.45, 5.2, 5.35, 5.5, 5.4, 5.55, 5.7, 5.45, 5.5, 5.65, 5.6, 5.8, 5.8], "Export": [4.74, 4.1, 3.85, 4.05, 4.2, 4.3, 4.25, 4.45, 4.15, 4.2, 4.55, 4.3, 4.4, 4.4], "Remittance": [2.97, 2.82, 2.47, 2.42, 2.55, 2.56, 2.49, 2.92, 2.6, 2.55, 2.95, 3.12, 3.43, 3.43], "Reserve_Gross": [31.4, 31.7, 30.9, 31.5, 31.8, 32.34, 32.8, 33.2, 33.6, 34.1, 34.4, 35.11, 34.55, 34.55], "Reserve_BPM6": [27.0, 26.7, 26.1, 26.8, 27.0, 27.58, 28.0, 28.51, 28.9, 29.47, 29.9, 30.6, 30.0, 30.0], "Gold": [2380, 2450, 2550, 2650, 2800, 2950, 3150, 3400, 4250, 4150, 4080, 4050, 4000, 4000], "Oil": [80, 79, 77, 76, 75, 74, 73, 75, 78, 80, 84, 88, 85, 85]}, "commentary": {"fx": "", "global": "", "rates": "", "ycurve": "", "inflation": "", "external": "", "reserves": "", "commodity": ""}, "commentaryResolved": {"fx": [{"text": "The taka rose 0.34 to 122.84/USD, with BC selling at 123.50.", "manual": false}], "global": [{"text": "Term SOFR spans 3.73-3.99% across tenors, while EURIBOR sits lower at 2.29%+.", "manual": false}, {"text": "The 3-month SOFR-EURIBOR gap is 1.44pp, a live input for currency-of-borrowing decisions.", "manual": false}], "rates": [{"text": "The repo rate is 10.00%, the Bank Rate 4.00%.", "manual": false}, {"text": "Call money fell 0.25pp to 9.75%.", "manual": false}], "ycurve": [{"text": "The local-currency curve is upward-sloping: the 91-day (9.70%) sits below the 10-year (10.24%).", "manual": false}, {"text": "Week-on-week the curve shifted down about 1.00pp on average.", "manual": false}], "inflation": [{"text": "Point-to-point inflation was unchanged at 9.42%.", "manual": false}, {"text": "The 12-month average was unchanged at 8.63%.", "manual": false}], "external": [{"text": "Remittances was little changed at $3.43bn.", "manual": false}, {"text": "Exports were $4.40bn against imports of $5.80bn - a trade gap of $1.40bn.", "manual": false}], "reserves": [{"text": "Gross reserves was little changed at $36.08bn (BPM6 $31.53bn).", "manual": false}], "commodity": [{"text": "Gold was little changed at $4,000/oz.", "manual": false}, {"text": "Brent was little changed at $73.00/bbl.", "manual": false}]}, "calendar": [{"date": "Early Jul", "event": "BBS - June & FY26 CPI inflation (point-to-point and 12-month average)"}, {"date": "Early Jul", "event": "Bangladesh Bank - month-end gross & BPM6 reserves; FY26 remittance total"}, {"date": "Mid Jul", "event": "EPB - June & FY26 export earnings and the trade balance"}, {"date": "Weekly", "event": "Bangladesh Bank - T-bill & T-bond auction cut-off yields"}, {"date": "Jul", "event": "Bangladesh Bank - Monetary Policy Statement for H1 FY27"}, {"date": "Daily", "event": "Global - term SOFR, EURIBOR, gold and Brent crude"}], "special": {"points": []}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=(n,d=2)=>n==null||isNaN(n)?"—":Number(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+/* ---------- weekly layer ---------- */
+let D=null;
+function chgHTML(k){
+  if(k.cur==null||k.prev==null) return '<div class="chg neutral">—</div>';
+  const d=k.cur-k.prev;
+  const shown = k.chg==="pct" ? (d/Math.abs(k.prev)*100) : d;
+  const sfx = k.chg==="pct" ? "%" : (k.unit==="%"?" pp":"");
+  let cl="neutral";
+  if(Math.abs(d)>1e-9){
+    if(k.good==null) cl="neutral";
+    else cl = (d>0)===(k.good===1) ? "good":"bad";
+  }
+  const ar=d>1e-9?"▲":d<-1e-9?"▼":"■";
+  return `<div class="chg ${cl}">${ar} ${fmt(Math.abs(shown),2)}${sfx} w/w</div>`;
+}
+function tile(k,live){
+  const unit=k.unit&&k.unit!=="%"?` <span style="font-size:13px;color:var(--muted)">${esc(k.unit)}</span>`:(k.unit==="%"?"%":"");
+  return `<div class="tile"><span class="tdot ${live?"lv":"wk"}"></span>
+    <div class="tlab">${esc(k.ind)}</div>
+    <div class="tval">${fmt(k.cur,k.dec)}${unit}</div>${chgHTML(k)}</div>`;
+}
+function statCard(k){
+  const unit=k.unit&&k.unit!=="%"?` <span style="font-size:12px;color:var(--muted)">${esc(k.unit)}</span>`:(k.unit==="%"?"%":"");
+  return `<div class="stat"><div class="lab">${esc(k.ind)}</div>
+    <div class="val">${fmt(k.cur,k.dec)}${unit}</div>${chgHTML(k).replace('class="chg','class="d')}</div>`;
+}
+function liveTile(label,valHTML,chgHTML2){
+  return `<div class="tile"><span class="tdot lv"></span><div class="tlab">${label}</div>
+    <div class="tval">${valHTML}</div><div class="chg neutral">${chgHTML2||"live"}</div></div>`;
+}
+const byInd=n=>D.kpis.find(k=>k.ind===n)||{};
+
+function renderWeekly(){
+  $("h-title").textContent=D.meta.title||"দেশী Macro";
+  $("h-sub").textContent=D.meta.subtitle||"";
+  $("h-week").textContent=D.meta.weekEnding||"—";
+  $("h-aud").textContent=D.meta.forAudience||"";
+  $("h-prep").textContent=D.meta.preparedBy||"";
+  $("f-prep").textContent=D.meta.preparedBy||"";
+  $("h-headline").textContent = D.meta.headline || autoHeadline();
+  // dashboard tiles (weekly, flagged OnDashboard) — live tiles appended by live layer
+  $("dash-tiles").innerHTML = D.kpis.filter(k=>k.dash).map(k=>tile(k)).join("") +
+    `<div class="tile" id="lt-bdt"><span class="tdot lv"></span><div class="tlab">USD/BDT (live ref)</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`+
+    `<div class="tile" id="lt-btc"><span class="tdot lv"></span><div class="tlab">Bitcoin</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`;
+  // special — shows ONLY when the Excel Special sheet has a title
+  // (reserved for occasional events: Monetary Policy, new BB/BSEC rules, etc.)
+  if(D.special && (D.special.title||"").trim()){
+    $("special").style.display="";
+    $("nav-special").style.display="";
+    $("sp-tag").textContent=`Special issue · ${D.special.tag||""} · ${D.special.date||""}`;
+    $("sp-title").textContent=D.special.title;
+    $("sp-points").innerHTML=(D.special.points||[]).map(p=>`<li>${esc(p)}</li>`).join("");
+  } else {
+    $("special").style.display="none";
+    $("nav-special").style.display="none";
+  }
+  // sections — side stat cards (2-up), curated to match the deck
+  $("fx-tiles").innerHTML=["Interbank (WAR)","BC Selling (Prime)"].map(n=>statCard(byInd(n))).join("");
+  $("global-tiles").innerHTML=["SOFR 3M","EURIBOR 3M"].map(n=>statCard(byInd(n))).join("");
+  $("rates-tiles").innerHTML=["Policy (Repo) Rate","Bank Rate","Call Money"].map(n=>statCard(byInd(n))).join("");
+  $("yc-tiles").innerHTML=["T-Bill 91D","T-Bill 364D","T-Bond 10Y","T-Bond 20Y"].map(n=>statCard(byInd(n))).join("");
+  $("infl-tiles").innerHTML=["P2P Inflation","Inflation (12M avg)"].map(n=>statCard(byInd(n))).join("");
+  $("ext-tiles").innerHTML=["Export (monthly)","Import (monthly)","Remittance (monthly)"].map(n=>statCard(byInd(n))).join("");
+  $("res-tiles").innerHTML=["Reserve Gross","Reserve BPM6"].map(n=>statCard(byInd(n))).join("");
+  $("cmd-tiles").innerHTML=["Gold","Oil (Brent)"].map(n=>statCard(byInd(n))).join("");
+  // commentary notes — auto + manual, from resolved layer (fallback to live auto if absent)
+  const CR = D.commentaryResolved || {};
+  for(const sec of ["fx","global","rates","ycurve","inflation","external","reserves","commodity"]){
+    const el=$("note-"+sec); if(!el) continue;
+    let lines = CR[sec];
+    if(!lines || !lines.length){ // fallback: compute in-browser if JSON is old
+      const man=(D.commentary||{})[sec];
+      lines = man ? [{text:man,manual:true}] : autoSection(sec).map(t=>({text:t,manual:false}));
+    }
+    el.innerHTML = lines.map(l=>`<li class="${l.manual?'manual':''}">${esc(l.text)}</li>`).join("");
+  }
+  // calendar
+  $("cal-rows").innerHTML=(D.calendar||[]).map(c=>`<tr><td class="cdate">${esc(c.date)}</td><td>${esc(c.event)}</td></tr>`).join("");
+  const gnote=$("note-gdp"); if(gnote) gnote.innerHTML=`<li>Bangladesh is highlighted and pinned to the top for quick regional benchmarking.</li><li>Growth is compared across South &amp; Southeast Asian peers plus China and the US.</li>`;
+  drawCharts();
+}
+function autoHeadline(){
+  const g=n=>byInd(n).cur;
+  return `Reserves near $${fmt(g("Reserve Gross"),2)}bn and $${fmt(g("Remittance (monthly)"),2)}bn of monthly remittances anchor the external sector, while inflation at ${fmt(g("P2P Inflation"),2)}% keeps the repo rate on hold at ${fmt(g("Policy (Repo) Rate"),2)}%. Globally, term SOFR holds around ${fmt(g("SOFR 3M"),2)}% while Brent trades near $${fmt(g("Oil (Brent)"),0)}/bbl.`;
+}
+/* browser fallback that mirrors commentary.py, used only if JSON lacks commentaryResolved */
+function autoSection(sec){
+  const g=(n,f)=>{const k=byInd(n); return f==="prev"?k.prev:k.cur;};
+  const F=(v,d=2)=>v==null?"—":Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+  const dir=(c,p,u="pp")=>{if(c==null||p==null)return"stood at";const d=c-p;if(Math.abs(d)<0.005)return"was unchanged at";return `${d>0?"rose":"fell"} ${Math.abs(d).toFixed(2)}${u} to`;};
+  const pdir=(c,p)=>{if(c==null||p==null||p===0)return"was at";const d=(c-p)/Math.abs(p)*100;if(Math.abs(d)<0.05)return"was little changed at";return `${d>0?"rose":"fell"} ${Math.abs(d).toFixed(1)}% to`;};
+  const o=[];
+  if(sec==="fx"){o.push(`The taka ${dir(g("Interbank (WAR)"),g("Interbank (WAR)","prev"),"")} ${F(g("Interbank (WAR)"))}/USD, with BC selling at ${F(g("BC Selling (Prime)"))}.`);}
+  else if(sec==="global"){const s3=g("SOFR 3M"),s12=g("SOFR 12M"),e3=g("EURIBOR 3M");
+    if(s3!=null&&s12!=null)o.push(`Term SOFR spans ${F(s3)}-${F(s12)}% across tenors, while EURIBOR sits lower at ${F(e3)}%+.`);
+    if(s3!=null&&e3!=null)o.push(`The 3-month SOFR-EURIBOR gap is ${F(s3-e3)}pp, a live input for currency-of-borrowing decisions.`);}
+  else if(sec==="rates"){o.push(`The repo rate is ${F(g("Policy (Repo) Rate"))}%, the Bank Rate ${F(g("Bank Rate"))}%.`);
+    o.push(`Call money ${dir(g("Call Money"),g("Call Money","prev"))} ${F(g("Call Money"))}%.`);}
+  else if(sec==="ycurve"){const d91=g("T-Bill 91D"),d10=g("T-Bond 10Y");
+    if(d91!=null&&d10!=null)o.push(`The local-currency curve is ${d10>d91?"upward-sloping":"inverted"}: the 91-day (${F(d91)}%) sits ${d10>d91?"below":"above"} the 10-year (${F(d10)}%).`);
+    const ten=["T-Bill 91D","T-Bill 182D","T-Bill 364D","T-Bond 2Y","T-Bond 5Y","T-Bond 10Y","T-Bond 20Y"];
+    const df=ten.map(t=>{const c=g(t),p=g(t,"prev");return c!=null&&p!=null?c-p:null;}).filter(x=>x!=null);
+    if(df.length){const a=df.reduce((x,y)=>x+y,0)/df.length;o.push(`Week-on-week the curve shifted ${a<0?"down":"up"} about ${Math.abs(a).toFixed(2)}pp on average.`);}}
+  else if(sec==="inflation"){o.push(`Point-to-point inflation ${dir(g("P2P Inflation"),g("P2P Inflation","prev"))} ${F(g("P2P Inflation"))}%.`);
+    o.push(`The 12-month average ${dir(g("Inflation (12M avg)"),g("Inflation (12M avg)","prev"))} ${F(g("Inflation (12M avg)"))}%.`);}
+  else if(sec==="external"){o.push(`Remittances ${pdir(g("Remittance (monthly)"),g("Remittance (monthly)","prev"))} $${F(g("Remittance (monthly)"))}bn.`);
+    const e=g("Export (monthly)"),i=g("Import (monthly)");if(e!=null&&i!=null)o.push(`Exports were $${F(e)}bn against imports of $${F(i)}bn - a trade gap of $${F(i-e)}bn.`);}
+  else if(sec==="reserves"){o.push(`Gross reserves ${pdir(g("Reserve Gross"),g("Reserve Gross","prev"))} $${F(g("Reserve Gross"))}bn (BPM6 $${F(g("Reserve BPM6"))}bn).`);}
+  else if(sec==="commodity"){o.push(`Gold ${pdir(g("Gold"),g("Gold","prev"))} $${F(g("Gold"),0)}/oz.`);
+    o.push(`Brent ${pdir(g("Oil (Brent)"),g("Oil (Brent)","prev"))} $${F(g("Oil (Brent)"))}/bbl.`);}
+  return o;
+}
+/* live world clocks */
+function tickClocks(){
+  const t=tz=>new Date().toLocaleTimeString("en-GB",{timeZone:tz,hour12:false});
+  const set=(id,tz)=>{const e=$(id);if(e)e.textContent=t(tz);};
+  set("clk-dhk","Asia/Dhaka");set("clk-ldn","Europe/London");set("clk-nyc","America/New_York");
+}
+setInterval(tickClocks,1000);tickClocks();
+
+/* ---------- interactive SVG line charts ---------- */
+const CHART_GEO={};   // stores geometry per chart for hover
+function lineChart(elId, labels, series, opts={}){
+  const W=560,H=300,L=52,R=14,T=16,B=34;
+  let vals=series.flatMap(s=>s.data).filter(v=>v!=null);
+  if(!vals.length){$(elId).innerHTML="";delete CHART_GEO[elId];return;}
+  let lo=Math.min(...vals),hi=Math.max(...vals);
+  const pad=(hi-lo||1)*0.12; lo-=pad; hi+=pad;
+  const X=i=>L+(W-L-R)*(labels.length<2?0.5:i/(labels.length-1));
+  const Y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  let g="";
+  for(let t=0;t<=4;t++){const v=lo+(hi-lo)*t/4,y=Y(v);
+    g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#EDF0F7"/><text class="ytick" x="${L-7}" y="${y+4}">${fmt(v,opts.dec??1)}</text>`;}
+  const step=Math.max(1,Math.ceil(labels.length/7));
+  labels.forEach((lb,i)=>{if(i%step===0||i===labels.length-1)g+=`<text class="xtick" x="${X(i)}" y="${H-10}">${esc(lb)}</text>`;});
+  for(const s of series){
+    const pts=s.data.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+    if(!pts.length)continue;
+    g+=`<path d="M${pts.map(p=>p.map(n=>n.toFixed(1)).join(",")).join(" L")}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"/>`;
+    const last=pts[pts.length-1];
+    g+=`<circle cx="${last[0]}" cy="${last[1]}" r="4" fill="${s.color}"/>`;
+  }
+  // interaction overlay
+  g+=`<line class="cx-line" id="${elId}-cx" x1="0" x2="0" y1="${T}" y2="${H-B}" style="display:none"/>`;
+  g+=`<g id="${elId}-cxdots"></g>`;
+  g+=`<rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent" style="cursor:crosshair"/>`;
+  $(elId).innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" preserveAspectRatio="xMidYMid meet">${g}</svg>`;
+  CHART_GEO[elId]={W,H,L,R,T,B,X,Y,labels,series,dec:opts.dec??1,unit:opts.unit||""};
+  attachHover(elId);
+}
+function attachHover(elId){
+  const el=$(elId), svg=el.querySelector("svg"), geo=CHART_GEO[elId];
+  if(!svg||!geo) return;
+  const cx=$(elId+"-cx"), dots=$(elId+"-cxdots"), tip=$("tip");
+  function nearest(clientX){
+    const r=svg.getBoundingClientRect();
+    const vx=(clientX-r.left)/r.width*geo.W;   // to viewBox coords
+    let best=0,bd=1e9;
+    for(let i=0;i<geo.labels.length;i++){const d=Math.abs(geo.X(i)-vx);if(d<bd){bd=d;best=i;}}
+    return best;
+  }
+  function move(clientX,clientY){
+    const i=nearest(clientX), xx=geo.X(i);
+    cx.setAttribute("x1",xx);cx.setAttribute("x2",xx);cx.style.display="";
+    let dg="",rows="";
+    for(const s of geo.series){
+      const v=s.data[i]; if(v==null)continue;
+      dg+=`<circle class="cx-dot" cx="${xx}" cy="${geo.Y(v)}" r="4.5" fill="${s.color}"/>`;
+      rows+=`<div class="tt-row"><span class="tt-l"><i style="background:${s.color}"></i>${esc(s.name||"")}</span><span class="tt-v">${fmt(v,geo.dec)}${geo.unit}</span></div>`;
+    }
+    dots.innerHTML=dg;
+    tip.innerHTML=`<div class="tt-date">${esc(geo.labels[i])}</div>${rows}`;
+    tip.style.display="block";
+    let tx=clientX+14, ty=clientY-10;
+    const tw=tip.offsetWidth, th=tip.offsetHeight;
+    if(tx+tw>window.innerWidth-8) tx=clientX-tw-14;
+    if(ty+th>window.innerHeight-8) ty=window.innerHeight-th-8;
+    if(ty<8) ty=8;
+    tip.style.left=tx+"px"; tip.style.top=ty+"px";
+  }
+  function leave(){cx.style.display="none";dots.innerHTML="";tip.style.display="none";}
+  svg.addEventListener("mousemove",e=>move(e.clientX,e.clientY));
+  svg.addEventListener("mouseleave",leave);
+  svg.addEventListener("touchmove",e=>{const t=e.touches[0];if(t){move(t.clientX,t.clientY);e.preventDefault();}},{passive:false});
+  svg.addEventListener("touchend",leave);
+}
+function drawCharts(){
+  const S=D.series||{}; const lab=(S.dates||[]).map(d=>d.slice(2,7));
+  lineChart("ch-fx",lab,[{name:"Interbank (WAR)",data:S.Interbank||[],color:"#1E2761"},{name:"BC Selling",data:S.BC_Selling||[],color:"#C9A227"}],{dec:2,unit:" ৳"});
+  lineChart("ch-rates",lab,[{name:"Call Money",data:S.CallMoney||[],color:"#1E2761"},{name:"Policy (Repo)",data:S.Policy||[],color:"#C9A227"}],{unit:"%"});
+  lineChart("ch-infl",lab,[{name:"P2P Inflation",data:S.P2P_Infl||[],color:"#1E2761"},{name:"12M Average",data:S.Avg12M_Infl||[],color:"#C9A227"}],{unit:"%"});
+  lineChart("ch-ext",lab,[{name:"Import",data:S.Import||[],color:"#1E2761"},{name:"Export",data:S.Export||[],color:"#C9A227"},{name:"Remittance",data:S.Remittance||[],color:"#1E8E5A"}],{unit:" $bn"});
+  lineChart("ch-res",lab,[{name:"Gross",data:S.Reserve_Gross||[],color:"#1E2761"},{name:"BPM6",data:S.Reserve_BPM6||[],color:"#C9A227"}],{unit:" $bn"});
+  // global reference rates — grouped bar by tenor
+  barChart("ch-global",["3M","6M","12M"],[
+    {name:"SOFR",data:[byInd("SOFR 3M").cur,byInd("SOFR 6M").cur,byInd("SOFR 12M").cur],color:"#1E2761"},
+    {name:"EURIBOR",data:[byInd("EURIBOR 3M").cur,byInd("EURIBOR 6M").cur,byInd("EURIBOR 12M").cur],color:"#C9A227"}],{unit:"%"});
+  // commodities — two mini line charts
+  lineChart("ch-gold",lab,[{name:"Gold",data:S.Gold||[],color:"#C9A227"}],{dec:0,unit:" $"});
+  lineChart("ch-oil",lab,[{name:"Brent",data:S.Oil||[],color:"#1E2761"},],{dec:0,unit:" $"});
+  // yield curve from KPIs
+  const tenors=["T-Bill 91D","T-Bill 182D","T-Bill 364D","T-Bond 2Y","T-Bond 5Y","T-Bond 10Y","T-Bond 20Y"];
+  const shortLab=["91D","182D","364D","2Y","5Y","10Y","20Y"];
+  const cur=tenors.map(t=>byInd(t).cur??null), prev=tenors.map(t=>byInd(t).prev??null);
+  lineChart("ch-yc",shortLab,[{name:"This week",data:cur,color:"#1E2761"},{name:"Last week",data:prev,color:"#C9A227"}],{unit:"%"});
+}
+/* grouped bar chart with hover */
+function barChart(elId,labels,series,opts={}){
+  const W=560,H=300,L=48,R=14,T=16,B=34;
+  let vals=series.flatMap(s=>s.data).filter(v=>v!=null);
+  if(!vals.length){$(elId).innerHTML="";return;}
+  const hi=Math.max(...vals)*1.15, lo=0;
+  const Y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  const groupW=(W-L-R)/labels.length, barW=groupW/(series.length+1);
+  let g="";
+  for(let t=0;t<=4;t++){const v=lo+(hi-lo)*t/4,y=Y(v);
+    g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#EDF0F7"/><text class="ytick" x="${L-7}" y="${y+4}">${fmt(v,opts.dec??1)}</text>`;}
+  labels.forEach((lb,i)=>{
+    const gx=L+groupW*i+groupW/2;
+    g+=`<text class="xtick" x="${gx}" y="${H-10}">${esc(lb)}</text>`;
+    series.forEach((s,j)=>{
+      const v=s.data[i]; if(v==null)return;
+      const bx=L+groupW*i+barW*(j+0.5), by=Y(v);
+      g+=`<rect x="${bx}" y="${by}" width="${barW*0.86}" height="${H-B-by}" fill="${s.color}" rx="2"/>`;
+      g+=`<text class="xtick" x="${bx+barW*0.43}" y="${by-5}" style="font-size:10px;fill:var(--navy);font-weight:600">${fmt(v,2)}</text>`;
+    });
+  });
+  $(elId).innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" preserveAspectRatio="xMidYMid meet" style="cursor:default">${g}</svg>`;
+}
+
+/* ---------- live layer ---------- */
+const cls=v=>v>0?"up":v<0?"dn":"nt", ar=v=>v>0?"▲":v<0?"▼":"■";
+const chg=v=>v==null?'<span class="nt">—</span>':`<span class="${cls(v)}">${ar(v)} ${Math.abs(v).toFixed(2)}%</span>`;
+const failRow=(id,n)=>{$(id).innerHTML=`<tr class="err-row"><td colspan="${n}">Feed unavailable — retries next cycle</td></tr>`;};
+/* fetch JSON with a hard timeout so a slow/blocked feed can never hang on "Connecting…" */
+async function fetchJSON(url,ms=12000){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),ms);
+  try{
+    const r=await fetch(url,{signal:ctl.signal});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    return await r.json();
+  } finally { clearTimeout(timer); }
+}
+
+async function loadBDT(){
+  try{
+    const j=await fetchJSON("https://open.er-api.com/v6/latest/USD");
+    if(j.result!=="success")throw 0;
+    const bdt=j.rates.BDT;
+    const t=$("lt-bdt"); if(t){t.children[2].textContent="৳ "+fmt(bdt,2);t.children[3].textContent="reference mid";}
+    $("tb-bdt").innerHTML=CONFIG.bdtCrosses.map(c=>{
+      const r=bdt/j.rates[c];
+      return `<tr><td>${c}/BDT</td><td>${fmt(r,r<1?4:2)}</td></tr>`;}).join("");
+  }catch(e){failRow("tb-bdt",2);}
+}
+async function loadFXMajors(){
+  try{
+    const d=new Date();d.setDate(d.getDate()-7);
+    const wk=d.toISOString().slice(0,10), sy=CONFIG.fxMajors.join(",");
+    const [now,prev]=await Promise.all([
+      fetchJSON(`https://api.frankfurter.dev/v1/latest?base=USD&symbols=${sy}`),
+      fetchJSON(`https://api.frankfurter.dev/v1/${wk}?base=USD&symbols=${sy}`)]);
+    $("tb-fxmaj").innerHTML=CONFIG.fxMajors.map(c=>{
+      const cur=now.rates[c],old=prev.rates?prev.rates[c]:null;
+      const inv=c==="EUR"||c==="GBP"||c==="AUD";
+      const px=inv?1/cur:cur, lb=inv?`${c}/USD`:`USD/${c}`;
+      let ch=old?((cur-old)/old*100):null; if(ch!=null&&inv)ch=-ch;
+      return `<tr><td>${lb}</td><td>${fmt(px,px<10?4:2)}</td><td>${chg(ch)}</td></tr>`;}).join("");
+  }catch(e){failRow("tb-fxmaj",3);}
+}
+async function loadCrypto(){
+  try{
+    const j=await fetchJSON(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${CONFIG.cryptoIds}&price_change_percentage=24h`);
+    if(!Array.isArray(j))throw 0;
+    const nm={"pax-gold":"Gold (PAXG proxy)","tether":"USDT"};
+    $("tb-cx").innerHTML=j.map(a=>`<tr><td>${(nm[a.id]||a.name)}</td>
+      <td>$${fmt(a.current_price,a.current_price<2?4:2)}</td><td>${chg(a.price_change_percentage_24h)}</td></tr>`).join("");
+    const btc=j.find(a=>a.id==="bitcoin"),t=$("lt-btc");
+    if(btc&&t){t.children[2].textContent="$"+fmt(btc.current_price,0);
+      t.children[3].innerHTML=chg(btc.price_change_percentage_24h)+" 24h";}
+  }catch(e){failRow("tb-cx",3);}
+}
+const WB_NAMES={BGD:"Bangladesh",IND:"India",PAK:"Pakistan",LKA:"Sri Lanka",VNM:"Vietnam",MYS:"Malaysia",CHN:"China",USA:"United States"};
+async function loadCPI(){
+  try{
+    const j=await fetchJSON(`https://api.worldbank.org/v2/country/${CONFIG.wbCountries}/indicator/FP.CPI.TOTL.ZG?format=json&per_page=100&mrnev=1`);
+    const rows=(j[1]||[]).map(d=>({iso:d.countryiso3code||d.country.id,n:WB_NAMES[d.countryiso3code||d.country.id]||d.country.value,y:d.date,v:d.value}))
+      .filter(d=>d.v!=null)
+      .sort((a,b)=>a.iso==="BGD"?-1:b.iso==="BGD"?1:b.v-a.v);
+    if(!rows.length) throw new Error("no data");
+    $("tb-cpi").innerHTML=rows.map(d=>`<tr${d.iso==="BGD"?' style="background:#FBF6E6"':''}><td>${d.n}${d.iso==="BGD"?' <span style="color:var(--gold)">●</span>':''}</td><td class="nt">${d.y}</td><td>${fmt(d.v,1)}%</td></tr>`).join("");
+  }catch(e){failRow("tb-cpi",3);}
+}
+async function loadGDP(){
+  try{
+    // pull a few recent years so we can show latest actual + newest available (forecast-like) point
+    const j=await fetchJSON(`https://api.worldbank.org/v2/country/${CONFIG.wbCountries}/indicator/${CONFIG.wbGdpIndicator}?format=json&per_page=400&mrnev=2`);
+    const by={};
+    (j[1]||[]).forEach(d=>{
+      const iso=d.countryiso3code||d.country.id;
+      if(d.value==null) return;
+      (by[iso]=by[iso]||[]).push({y:+d.date,v:d.value});
+    });
+    const rows=Object.keys(by).map(iso=>{
+      const arr=by[iso].sort((a,b)=>b.y-a.y);       // newest first
+      return {iso, n:WB_NAMES[iso]||iso, latest:arr[0], prev:arr[1]||null};
+    }).sort((a,b)=>a.iso==="BGD"?-1:b.iso==="BGD"?1:b.latest.v-a.latest.v);
+    if(!rows.length) throw new Error("no data");
+    const max=Math.max(...rows.map(r=>Math.abs(r.latest.v)),8);
+    $("tb-gdp").innerHTML=rows.map(d=>{
+      const w=Math.min(100,Math.abs(d.latest.v)/max*100);
+      const col=d.latest.v>=0?"var(--good)":"var(--bad)";
+      return `<tr${d.iso==="BGD"?' style="background:#FBF6E6"':''}>
+        <td>${d.n}${d.iso==="BGD"?' <span style="color:var(--gold)">●</span>':''}</td>
+        <td class="nt">${d.latest.y}</td>
+        <td class="${d.latest.v>=0?"up":"dn"}">${fmt(d.latest.v,1)}%</td>
+        <td style="width:34%"><span style="display:inline-block;height:9px;border-radius:2px;background:${col};opacity:.5;width:${w}%"></span></td></tr>`;
+    }).join("");
+  }catch(e){failRow("tb-gdp",4);}
+}
+
+/* ---------- boot & refresh engine ---------- */
+let remaining=CONFIG.refreshSeconds;
+async function refreshLive(){
+  remaining=CONFIG.refreshSeconds;
+  await Promise.allSettled([loadBDT(),loadFXMajors(),loadCrypto(),loadCPI(),loadGDP()]);
+  $("stamp").textContent="Live layer last refreshed "+new Date().toLocaleString("en-GB",{timeZone:"Asia/Dhaka"})+" (Dhaka) · weekly layer as of "+(D&&D.meta.weekEnding||"—");
+}
+setInterval(()=>{remaining--;if(remaining<=0)refreshLive();$("countdown").textContent=Math.max(remaining,0);},1000);
+$("refreshBtn").addEventListener("click",refreshLive);
+$("yr").textContent=new Date().getFullYear();
+
+(async function boot(){
+  try{
+    const r=await fetch("data.json",{cache:"no-store"});
+    if(!r.ok)throw 0;
+    D=await r.json();
+  }catch(e){ D=FALLBACK_DATA; }
+  if(!D){ $("h-headline").textContent="data.json not found — upload it next to index.html."; return; }
+  renderWeekly();
+  refreshLive();
+})();
+</script>
+</body></html>
