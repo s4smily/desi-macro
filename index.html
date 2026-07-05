@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DCM Weekly : দেশী Macro — Bangladesh & Global Markets</title>
+<title>Frontier Macro — Bangladesh & Global Markets</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMxMjE2M0EiLz4KICA8cGF0aCBkPSJNOCA0NCBMMjQgMzAgTDM2IDM4IEw1NiAxNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBMjI3IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjU2IiBjeT0iMTQiIHI9IjUiIGZpbGw9IiNDOUEyMjciLz4KICA8cGF0aCBkPSJNOCA1MiBMNTYgNTIiIHN0cm9rZT0iI0NBRENGQyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNTUiLz4KPC9zdmc+">
 <meta name="description" content="Bangladesh macro dashboard: FX, rates, yield curve, inflation, trade, reserves and live global markets for treasury professionals, asset managers and investors.">
 <style>
 :root{--navy:#1E2761;--deep:#12163A;--gold:#C9A227;--good:#1E8E5A;--bad:#C0392B;
@@ -136,7 +137,7 @@ footer.foot b{color:#fff}
 
 <header class="hero"><div class="wrap">
   <div class="kick">BANGLADESH MACRO</div>
-  <h1 id="h-title">দেশী Macro</h1>
+  <h1 id="h-title">Frontier Macro</h1>
   <div class="sub" id="h-sub"></div>
   <div class="hbox" id="h-headline">Loading weekly briefing…</div>
   <div class="hmeta">
@@ -463,7 +464,8 @@ function renderMovers(){
 }
 
 function renderWeekly(){
-  $("h-title").textContent=D.meta.title||"দেশী Macro";
+  $("h-title").textContent=D.meta.title||"Frontier Macro";
+  document.title=(D.meta.title||"Frontier Macro")+" — Bangladesh & Global Markets";
   $("h-sub").textContent=D.meta.subtitle||"";
   $("h-week").textContent=D.meta.weekEnding||"—";
   $("h-aud").textContent=D.meta.forAudience||"";
