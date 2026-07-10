@@ -66,6 +66,10 @@ h2{font-family:Georgia,serif;color:var(--navy);font-size:25px;margin:6px 0 12px}
 box-shadow:0 1px 6px rgba(20,30,80,.05);display:flex;flex-direction:column}
 .card.chartcard{min-height:360px}
 .card-title{font-weight:700;color:var(--navy);font-size:14px;margin:0 0 8px}
+.card-sub{font-size:11.5px;color:var(--muted);margin:-4px 0 10px}
+.stat .cap{font-size:10px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.35}
+.fxnote{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:11px 14px;font-size:12.5px;color:var(--ink);line-height:1.5}
+.fxnote b{color:var(--navy)}
 .chart{width:100%;height:auto;display:block;flex:1}
 .ytick{fill:var(--muted);font-size:11px;text-anchor:end}
 .xtick{fill:var(--muted);font-size:11px;text-anchor:middle}
@@ -136,7 +140,7 @@ footer.foot b{color:#fff}
 <body>
 
 <header class="hero"><div class="wrap">
-  <div class="kick">BANGLADESH MACRO</div>
+  <div class="kick" id="kick">BANGLADESH MACRO</div>
   <h1 id="h-title">Frontier Macro</h1>
   <div class="sub" id="h-sub"></div>
   <div class="hbox" id="h-headline">Loading weekly briefing…</div>
@@ -145,13 +149,13 @@ footer.foot b{color:#fff}
     <span class="clocks" id="clocks">
       DHAKA <b id="clk-dhk">--:--:--</b> &nbsp; LONDON <b id="clk-ldn">--:--:--</b> &nbsp; NEW YORK <b id="clk-nyc">--:--:--</b>
     </span>
-    <span>Prepared by <b id="h-prep"></b></span>
+    <span>Developed by <b id="h-prep"></b></span>
   </div>
 </div></header>
 
 <nav class="subnav"><div class="wrap">
   <a href="#dash">Dashboard</a><a href="#special" id="nav-special">Special</a><a href="#fx">FX</a>
-  <a href="#global">Global Rates</a><a href="#rates">Domestic Rates</a><a href="#ycurve">Yield Curve</a>
+  <a href="#equities">Equities</a><a href="#global">Global Rates</a><a href="#rates">Domestic Rates</a><a href="#ycurve">Yield Curve</a>
   <a href="#inflation">Inflation</a><a href="#gdp">GDP Growth</a><a href="#external">Trade &amp; Remittances</a><a href="#reserves">Reserves</a>
   <a href="#commodity">Commodities</a><a href="#calendar">Calendar</a>
 </div></nav>
@@ -186,19 +190,37 @@ footer.foot b{color:#fff}
 
 <!-- ============ FX ============ -->
 <section class="sec" id="fx">
-  <div class="eyebrow">Currency</div>
-  <h2>FX &amp; Exchange Rates <span class="badge wk">WEEKLY</span></h2>
+  <div class="eyebrow">Currency · USD / BDT</div>
+  <h2>USD/BDT Exchange Rate <span class="badge wk">WEEKLY</span></h2>
   <div class="grid">
-    <div class="card chartcard"><div class="card-title">Exchange rate: interbank (WAR) vs BC selling</div><div id="ch-fx"></div>
-      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>Interbank (WAR)</span>
-      <span class="leg"><i style="background:#C9A227"></i>BC Selling</span></div></div>
+    <div class="card chartcard"><div class="card-title">USD/BDT exchange rate — interbank (WAR) vs BC sell</div>
+      <div class="card-sub">Taka per US dollar. Higher = weaker taka.</div><div id="ch-fx"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>USD/BDT — Interbank (WAR)</span>
+      <span class="leg"><i style="background:#C9A227"></i>USD/BDT — BC Sell</span></div></div>
     <div class="side">
       <div class="statrow" id="fx-tiles"></div>
+      <div class="fxnote"><b>What these mean.</b> Both are the price of one US dollar in Bangladeshi taka (BDT). Interbank (WAR) is the weighted-average rate at which banks trade dollars, published by the country's Central Bank. BC Sell is the bills-for-collection selling rate a typical second-generation commercial bank charges customers (usually taken from City Bank or Prime Bank from their website).</div>
       <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-fx"></ul></div>
       <div class="take">Taka crosses <span class="badge lv">LIVE</span></div>
       <div class="card"><table class="mkt"><thead><tr><th>Cross</th><th>Rate (৳)</th></tr></thead>
         <tbody id="tb-bdt"><tr><td colspan="2" class="nt">Connecting…</td></tr></tbody></table>
         <div class="srcline">Reference mid-rates · open.er-api.com · indicative, not interbank quotes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOMESTIC EQUITIES ============ -->
+<section class="sec" id="equities">
+  <div class="eyebrow">Capital market</div>
+  <h2>Domestic Equities <span class="badge wk">WEEKLY</span></h2>
+  <div class="grid">
+    <div class="card chartcard"><div class="card-title">Bangladesh equity indices — weekly trend (points)</div><div id="ch-equities"></div>
+      <div class="legend"><span class="leg"><i style="background:#1E2761"></i>DSEX</span>
+      <span class="leg"><i style="background:#C9A227"></i>DSE30</span>
+      <span class="leg"><i style="background:#1E8E5A"></i>CSEX</span></div></div>
+    <div class="side">
+      <div class="statrow" id="eq-tiles"></div>
+      <div class="commentary"><div class="take">Analyst commentary</div><ul id="note-equities"></ul></div>
     </div>
   </div>
 </section>
@@ -386,7 +408,7 @@ const CONFIG = {
   wbCountries: "BGD;IND;PAK;LKA;VNM;MYS;CHN;USA",
   wbGdpIndicator: "NY.GDP.MKTP.KD.ZG"   // real GDP growth (annual %)
 };
-const FALLBACK_DATA = {"meta": {"weekEnding": "July 04, 2026", "title": "The Frontier Macro", "subtitle": "Rates, FX, the External Sector & Global Markets", "preparedBy": "M Sohel Rahman | Dhaka, BGD", "forAudience": "For Quick Reference Only - Domestic & Global Markets", "headline": "Bangladesh Bank maintains its contractionary policy rate at 10.0% through H1FY27 to anchor inflation—now easing to 9.4% from an 11.7% peak—while unveiling a Tk. 60,000 crore stimulus package aimed at reviving private credit, industrial output, and generating 25 lakh jobs; even as the economy shows a fragile recovery with GDP growth targeted at 6.5%, elevated NPLs near 32%, stable reserves and remittances, sweeping banking-sector reforms, and mounting external risks from Middle East conflict-driven energy and fertilizer price shocks."}, "kpis": [{"cat": "FX", "ind": "Interbank (WAR)", "unit": null, "cur": 122.85, "prev": 122.8358, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "FX", "ind": "BC Selling (Prime)", "unit": null, "cur": 123.75, "prev": 123.5, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 3M", "unit": "%", "cur": 3.75202, "prev": 3.73222, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 6M", "unit": "%", "cur": 3.87192, "prev": 3.84627, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "SOFR 12M", "unit": "%", "cur": 4.02612, "prev": 3.99367, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 3M", "unit": "%", "cur": 2.335, "prev": 2.291, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 6M", "unit": "%", "cur": 2.565, "prev": 2.596, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 12M", "unit": "%", "cur": 2.733, "prev": 2.764, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Policy (Repo) Rate", "unit": "%", "cur": 10.0, "prev": 10.0, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Money", "ind": "Bank Rate", "unit": "%", "cur": 4.0, "prev": 4.0, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Call Money", "unit": "%", "cur": 9.61, "prev": 9.75, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 91D", "unit": "%", "cur": 9.4399, "prev": 9.6985, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 182D", "unit": "%", "cur": 9.7098, "prev": 9.89, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bill 364D", "unit": "%", "cur": 9.74, "prev": 9.9255, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 2Y", "unit": "%", "cur": 10.43, "prev": 10.43, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 5Y", "unit": "%", "cur": 10.3502, "prev": 10.3502, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 10Y", "unit": "%", "cur": 10.24, "prev": 10.24, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bond 20Y", "unit": "%", "cur": 10.34, "prev": 10.34, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Inflation", "ind": "P2P Inflation", "unit": "%", "cur": 9.42, "prev": 9.42, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Inflation", "ind": "Inflation (12M avg)", "unit": "%", "cur": 8.63, "prev": 8.63, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Trade", "ind": "Import (monthly)", "unit": "$bn", "cur": 5.8, "prev": 5.8, "good": null, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Export (monthly)", "unit": "$bn", "cur": 4.2, "prev": 4.4, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Remittance (monthly)", "unit": "$bn", "cur": 2.816, "prev": 3.43, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Reserves", "ind": "Reserve Gross", "unit": "$bn", "cur": 36.08, "prev": 36.08, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Reserves", "ind": "Reserve BPM6", "unit": "$bn", "cur": 31.53, "prev": 31.53, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Commodity", "ind": "Gold", "unit": "$/oz", "cur": 4175.0, "prev": 4000.0, "good": null, "dec": 0, "chg": "pct", "dash": true}, {"cat": "Commodity", "ind": "Oil (Brent)", "unit": "$/bbl", "cur": 72.12, "prev": 73.0, "good": 0, "dec": 2, "chg": "pct", "dash": true}], "series": {"dates": ["2025-05-01", "2025-06-01", "2025-07-01", "2025-08-01", "2025-09-01", "2025-10-01", "2025-11-01", "2025-12-01", "2026-01-01", "2026-02-01", "2026-03-01", "2026-04-01", "2026-05-01", "2026-06-01", "2026-07-01"], "Interbank": [121.2, 121.4, 121.6, 121.8, 122.0, 122.1, 122.2, 122.3, 122.35, 122.4, 122.45, 122.48, 122.5, 122.75, 122.85], "BC_Selling": [121.8, 122.0, 122.2, 122.4, 122.55, 122.65, 122.75, 122.85, 122.9, 122.95, 123.0, 123.0, 123.0, 123.25, 123.75], "CallMoney": [9.2, 9.4, 9.8, 10.1, 9.95, 10.0, 10.05, 10.1, 10.05, 10.0, 9.95, 10.0, 10.0, 9.9, 9.61], "Policy": [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], "P2P_Infl": [9.05, 8.48, 8.55, 8.29, 8.1, 8.2, 7.95, 8.3, 8.58, 9.13, 8.71, 9.04, 9.42, 9.42, 9.42], "Avg12M_Infl": [10.2, 10.05, 9.9, 9.7, 9.5, 9.3, 9.1, 8.95, 8.85, 8.8, 8.74, 8.7, 8.63, 8.63, 8.63], "Import": [5.3, 5.45, 5.2, 5.35, 5.5, 5.4, 5.55, 5.7, 5.45, 5.5, 5.65, 5.6, 5.8, 5.8, null], "Export": [4.74, 4.1, 3.85, 4.05, 4.2, 4.3, 4.25, 4.45, 4.15, 4.2, 4.55, 4.3, 4.4, 4.4, 4.2], "Remittance": [2.97, 2.82, 2.47, 2.42, 2.55, 2.56, 2.49, 2.92, 2.6, 2.55, 2.95, 3.12, 3.43, 3.43, 2.816], "Reserve_Gross": [31.4, 31.7, 30.9, 31.5, 31.8, 32.34, 32.8, 33.2, 33.6, 34.1, 34.4, 35.11, 34.55, 34.55, 34.55], "Reserve_BPM6": [27.0, 26.7, 26.1, 26.8, 27.0, 27.58, 28.0, 28.51, 28.9, 29.47, 29.9, 30.6, 30.0, 30.0, 30.0], "Gold": [2380, 2450, 2550, 2650, 2800, 2950, 3150, 3400, 4250, 4150, 4080, 4050, 4000, 4000, 4175], "Oil": [80.0, 79.0, 77.0, 76.0, 75.0, 74.0, 73.0, 75.0, 78.0, 80.0, 84.0, 88.0, 85.0, 85.0, 72.12]}, "commentary": {"fx": "", "global": "", "rates": "The Bangladesh Bank has lowered its private sector credit growth target to 6.8% for December under its Monetary Policy Statement for the first half of FY2026-27.", "ycurve": "Bangladesh Bank (BB) has capped the maximum Merchant Discount Rate (MDR) at one percent, including VAT, for government revenue and fee collection through the Bangla QR payment system to promote affordable and wider use of digital payments.", "inflation": "The Bangladesh Bank’s (BB) own inflation model is running well ahead of its own expectations, projecting price growth near 9 percent through mid-2027, even as its official ceiling sits at 7.5 percent for the upcoming fiscal year 2026-27, according to BRAC EPL Stock Brokerage.", "external": "According to the latest data with Bangladesh Bank (BB), with June's provisional count of $2.80 billion the total remittance netting in FY26 came to $35.56 billion, $5.23-billion higher from the FY'25 receipt.", "reserves": "", "commodity": ""}, "commentaryResolved": {"fx": [{"text": "The taka rose 0.01 to 122.85/USD, with BC selling at 123.75.", "manual": false}], "global": [{"text": "Term SOFR spans 3.75-4.03% across tenors, while EURIBOR sits lower at 2.33%+.", "manual": false}, {"text": "The 3-month SOFR-EURIBOR gap is 1.42pp, a live input for currency-of-borrowing decisions.", "manual": false}], "rates": [{"text": "The Bangladesh Bank has lowered its private sector credit growth target to 6.8% for December under its Monetary Policy Statement for the first half of FY2026-27.", "manual": true}, {"text": "The repo rate is 10.00%, the Bank Rate 4.00%.", "manual": false}, {"text": "Call money fell 0.14pp to 9.61%.", "manual": false}], "ycurve": [{"text": "Bangladesh Bank (BB) has capped the maximum Merchant Discount Rate (MDR) at one percent, including VAT, for government revenue and fee collection through the Bangla QR payment system to promote affordable and wider use of digital payments.", "manual": true}, {"text": "The local-currency curve is upward-sloping: the 91-day (9.44%) sits below the 10-year (10.24%).", "manual": false}, {"text": "Week-on-week the curve shifted down about 0.09pp on average.", "manual": false}], "inflation": [{"text": "The Bangladesh Bank’s (BB) own inflation model is running well ahead of its own expectations, projecting price growth near 9 percent through mid-2027, even as its official ceiling sits at 7.5 percent for the upcoming fiscal year 2026-27, according to BRAC EPL Stock Brokerage.", "manual": true}, {"text": "Point-to-point inflation was unchanged at 9.42%.", "manual": false}, {"text": "The 12-month average was unchanged at 8.63%.", "manual": false}], "external": [{"text": "According to the latest data with Bangladesh Bank (BB), with June's provisional count of $2.80 billion the total remittance netting in FY26 came to $35.56 billion, $5.23-billion higher from the FY'25 receipt.", "manual": true}, {"text": "Remittances fell 17.9% to $2.82bn.", "manual": false}, {"text": "Exports were $4.20bn against imports of $5.80bn - a trade gap of $1.60bn.", "manual": false}], "reserves": [{"text": "Gross reserves was little changed at $36.08bn (BPM6 $31.53bn).", "manual": false}], "commodity": [{"text": "Gold rose 4.4% to $4,175/oz.", "manual": false}, {"text": "Brent fell 1.2% to $72.12/bbl.", "manual": false}]}, "calendar": [{"date": "Early Jul", "event": "BBS - June & FY26 CPI inflation (point-to-point and 12-month average)"}, {"date": "Early Jul", "event": "Bangladesh Bank - month-end gross & BPM6 reserves; FY26 remittance total"}, {"date": "Mid Jul", "event": "EPB - June & FY26 export earnings and the trade balance"}, {"date": "Weekly", "event": "Bangladesh Bank - T-bill & T-bond auction cut-off yields"}, {"date": "Jul", "event": "Bangladesh Bank - Monetary Policy Statement for H1 FY27"}, {"date": "Daily", "event": "Global - term SOFR, EURIBOR, gold and Brent crude"}], "special": {"title": "Bangladesh Bank Monetary Policy Statement (H1 FY27) — Summary", "tag": "MPS27H1, Bangladesh Bank, Policy, FY 2026-27", "date": "July 04, 2026", "points": ["Policy rate held at 10.0% (unchanged since Oct 2024); SLF at 11.5%, SDF at 7.5% — contractionary stance continues into H1FY27", "Inflation: eased from 11.7% (Jul 2024) to 9.4% (May 2026); projected to moderate to ~8.9% by Dec 2026", "Growth: FY26 GDP growth ~4.14%; FY27 target 6.5% (BB forecasts 6.1%)", "Tk. 60,000 crore stimulus package for industry, agriculture & CMSMEs — expected to create ~25 lakh jobs", "Private sector credit growth slowed to 5.5% (Jun 2026); projected to recover to 8.0% by Jun 2027", "NPLs remain elevated: gross NPL ratio at 32.26% (Mar 2026); new Bank Resolution Act & Deposit Protection Act 2026 introduced", "External sector strengthened: reserves rose to $31.74B; remittances up 19.07%; exchange rate stable (~BDT 123/USD)", "Key risks: Middle East conflict, energy/fertilizer price shocks, high NPLs, weak private investment"]}};
+const FALLBACK_DATA = {"meta": {"weekEnding": "July 11, 2026", "title": "The Frontier Macro", "subtitle": "Rates, FX, the External Sector & Global Markets", "preparedBy": "M Sohel Rahman | Dhaka, BGD", "forAudience": "For Quick Reference Only - Bangladesh & Global Markets", "headline": "Bangladesh’s external sector presented a mixed picture during the first eleven months of FY26. The current account deficit narrowed sharply to USD 301 million from USD 1.23 billion in the corresponding period of the previous fiscal year, primarily driven by record-high remittance inflows. In contrast, the trade deficit widened to USD 23.98 billion from USD 19.38 billion as imports rose 6.3% year-on-year to USD 64.02 billion, while exports declined 2.0% to USD 40.04 billion. Encouragingly, the financial account recorded a notable recovery, posting a surplus of USD 4.16 billion compared with a deficit of USD 214 million during the same period of FY25."}, "kpis": [{"cat": "FX", "ind": "Interbank (WAR)", "unit": null, "cur": 122.85, "prev": 122.85, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "FX", "ind": "BC Selling (Prime)", "unit": null, "cur": 123.75, "prev": 123.75, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 3M", "unit": "%", "cur": 3.76264, "prev": 3.75202, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Global", "ind": "SOFR 6M", "unit": "%", "cur": 3.88727, "prev": 3.87192, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "SOFR 12M", "unit": "%", "cur": 4.05231, "prev": 4.02612, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 3M", "unit": "%", "cur": 2.353, "prev": 2.335, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 6M", "unit": "%", "cur": 2.567, "prev": 2.565, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Global", "ind": "EURIBOR 12M", "unit": "%", "cur": 2.737, "prev": 2.733, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Policy (Repo) Rate", "unit": "%", "cur": 10.0, "prev": 10.0, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Money", "ind": "Bank Rate", "unit": "%", "cur": 4.0, "prev": 4.0, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Money", "ind": "Call Money", "unit": "%", "cur": 9.56, "prev": 9.61, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 91D", "unit": "%", "cur": 9.3299, "prev": 9.4399, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bill 182D", "unit": "%", "cur": 9.5699, "prev": 9.7098, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bill 364D", "unit": "%", "cur": 9.6298, "prev": 9.74, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 2Y", "unit": "%", "cur": 9.7085, "prev": 10.43, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 5Y", "unit": "%", "cur": 10.3502, "prev": 10.3502, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Govt", "ind": "T-Bond 10Y", "unit": "%", "cur": 10.24, "prev": 10.24, "good": null, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Govt", "ind": "T-Bond 20Y", "unit": "%", "cur": 10.34, "prev": 10.34, "good": null, "dec": 2, "chg": "abs", "dash": false}, {"cat": "Inflation", "ind": "P2P Inflation", "unit": "%", "cur": 9.42, "prev": 9.42, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Inflation", "ind": "Inflation (12M avg)", "unit": "%", "cur": 8.63, "prev": 8.63, "good": 0, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Trade", "ind": "Import (monthly)", "unit": "$bn", "cur": 5.8, "prev": 5.8, "good": null, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Export (monthly)", "unit": "$bn", "cur": 4.2, "prev": 4.2, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Trade", "ind": "Remittance (monthly)", "unit": "$bn", "cur": 0.349, "prev": 2.816, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Reserves", "ind": "Reserve Gross", "unit": "$bn", "cur": 36.08, "prev": 36.08, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Reserves", "ind": "Reserve BPM6", "unit": "$bn", "cur": 31.53, "prev": 31.53, "good": 1, "dec": 2, "chg": "abs", "dash": true}, {"cat": "Commodity", "ind": "Gold", "unit": "$/oz", "cur": 4135.21, "prev": 4175.0, "good": null, "dec": 0, "chg": "pct", "dash": true}, {"cat": "Commodity", "ind": "Oil (Brent)", "unit": "$/bbl", "cur": 75.72, "prev": 72.12, "good": 0, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Equities", "ind": "DSEX", "unit": "pts", "cur": 5804.0, "prev": 5743.0, "good": 1, "dec": 2, "chg": "pct", "dash": true}, {"cat": "Equities", "ind": "DSE30", "unit": "pts", "cur": 2177.0, "prev": 2162.0, "good": 1, "dec": 2, "chg": "pct", "dash": false}, {"cat": "Equities", "ind": "CSEX", "unit": "pts", "cur": 15515.0, "prev": 15407.0, "good": 1, "dec": 2, "chg": "pct", "dash": false}], "series": {"dates": ["2025-05-01", "2025-06-01", "2025-07-01", "2025-08-01", "2025-09-01", "2025-10-01", "2025-11-01", "2025-12-01", "2026-01-01", "2026-02-01", "2026-03-01", "2026-04-01", "2026-05-01", "2026-06-01", "2026-07-01"], "Interbank": [121.2, 121.4, 121.6, 121.8, 122.0, 122.1, 122.2, 122.3, 122.35, 122.4, 122.45, 122.48, 122.5, 122.75, 122.85], "BC_Selling": [121.8, 122.0, 122.2, 122.4, 122.55, 122.65, 122.75, 122.85, 122.9, 122.95, 123.0, 123.0, 123.0, 123.25, 123.75], "CallMoney": [9.2, 9.4, 9.8, 10.1, 9.95, 10.0, 10.05, 10.1, 10.05, 10.0, 9.95, 10.0, 10.0, 9.9, 9.61], "Policy": [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], "P2P_Infl": [9.0, 9.05, 8.48, 8.55, 8.29, 8.1, 8.2, 7.95, 8.3, 8.58, 9.13, 8.71, 9.04, 9.42, null], "Avg12M_Infl": [10.0, 10.2, 10.05, 9.9, 9.7, 9.5, 9.3, 9.1, 8.95, 8.85, 8.8, 8.74, 8.7, 8.63, null], "Import": [5.0, 5.3, 5.45, 5.2, 5.35, 5.5, 5.4, 5.55, 5.7, 5.45, 5.5, 5.65, 5.6, 5.8, null], "Export": [4.5, 4.74, 4.1, 3.85, 4.05, 4.2, 4.3, 4.25, 4.45, 4.15, 4.2, 4.55, 4.3, 4.4, null], "Remittance": [2.97, 2.82, 2.47, 2.42, 2.55, 2.56, 2.49, 2.92, 2.6, 2.55, 2.95, 3.12, 3.43, 3.43, 2.816], "Reserve_Gross": [31.4, 31.4, 31.7, 30.9, 31.5, 31.8, 32.34, 32.8, 33.2, 33.6, 34.1, 34.4, 35.11, 34.55, null], "Reserve_BPM6": [27.0, 27.0, 26.7, 26.1, 26.8, 27.0, 27.58, 28.0, 28.51, 28.9, 29.47, 29.9, 30.6, 30.0, null], "Gold": [2380, 2450, 2550, 2650, 2800, 2950, 3150, 3400, 4250, 4150, 4080, 4050, 4000, 4000, 4175], "Oil": [80.0, 79.0, 77.0, 76.0, 75.0, 74.0, 73.0, 75.0, 78.0, 80.0, 84.0, 88.0, 85.0, 85.0, 72.12], "DSEX": [null, null, null, null, null, null, null, null, null, null, null, null, 5265.0, 5372.0, 5743.0], "DSE30": [null, null, null, null, null, null, null, null, null, null, null, null, 2018.0, 2044.0, 2162.0], "CSEX": [null, null, null, null, null, null, null, null, null, null, null, null, 14788.0, 14970.0, 15407.0]}, "commentary": {"fx": "Imports increased 5.9% year-on-year to USD 67.7 billion during the period, reflecting stronger domestic demand. However, import growth remained below the pace of remittance growth. Meanwhile, exports rose by over 11% to USD 44.2 billion.", "equities": "", "global": "A high-level Bangladeshi delegation will travel to the United States next week to seek support from the 54 member states of the UN Economic and Social Council (ECOSOC) for Bangladesh's request to defer its graduation from Least Developed Country (LDC) status by three years.", "rates": "The Bangladesh Bank has revised down its private sector credit growth target to 6.8% for December 2026 under the Monetary Policy Statement (MPS) for the first half of FY2026-27.", "ycurve": "Finance Minister Amir Khosru Mahmud Chowdhury assured that depositors of the country's five troubled banks will receive 100% of their deposits along with accrued interest, ruling out any possibility of a deposit haircut.", "inflation": "Consumer lending continued its upward trend in the January–March quarter of FY26, with outstanding loans exceeding BDT 1.58 trillion, despite elevated lending rates and persistent inflationary pressures.", "external": "Bangladesh's current account deficit (CAD) narrowed significantly to USD 301 million during July–May FY26, compared with USD 1.23 billion in the corresponding period of the previous fiscal year, supported by record remittance inflows and moderate import growth.", "reserves": "Bangladesh's financial account posted a surplus of USD 4.16 billion during the first 11 months of FY26, marking a sharp turnaround from a USD 214 million deficit in the same period of FY25, according to Bangladesh Bank.", "commodity": "Global oil prices surged more than 5% after US President Donald Trump stated that the memorandum of understanding to end the conflict with Iran was \"over,\" raising concerns over potential disruptions to Middle East oil supplies. Brent crude rose to USD 77.98 per barrel (+5.15%), while WTI crude climbed to USD 74.14 per barrel (+5.25%), the highest levels since 23 June."}, "commentaryResolved": {"fx": [{"text": "Imports increased 5.9% year-on-year to USD 67.7 billion during the period, reflecting stronger domestic demand. However, import growth remained below the pace of remittance growth. Meanwhile, exports rose by over 11% to USD 44.2 billion.", "manual": true}, {"text": "The taka was unchanged at 122.85 per USD (interbank), with the BC sell rate at 123.75.", "manual": false}], "equities": [{"text": "DSEX rose 1.1% to 5,804 pts.", "manual": false}, {"text": "DSE30 at 2,177 and CSEX at 15,515.", "manual": false}], "global": [{"text": "A high-level Bangladeshi delegation will travel to the United States next week to seek support from the 54 member states of the UN Economic and Social Council (ECOSOC) for Bangladesh's request to defer its graduation from Least Developed Country (LDC) status by three years.", "manual": true}, {"text": "Term SOFR spans 3.76-4.05% across tenors, while EURIBOR sits lower at 2.35%+.", "manual": false}, {"text": "The 3-month SOFR-EURIBOR gap is 1.41pp, a live input for currency-of-borrowing decisions.", "manual": false}], "rates": [{"text": "The Bangladesh Bank has revised down its private sector credit growth target to 6.8% for December 2026 under the Monetary Policy Statement (MPS) for the first half of FY2026-27.", "manual": true}, {"text": "The repo rate is 10.00%, the Bank Rate 4.00%.", "manual": false}, {"text": "Call money fell 0.05pp to 9.56%.", "manual": false}], "ycurve": [{"text": "Finance Minister Amir Khosru Mahmud Chowdhury assured that depositors of the country's five troubled banks will receive 100% of their deposits along with accrued interest, ruling out any possibility of a deposit haircut.", "manual": true}, {"text": "The local-currency curve is upward-sloping: the 91-day (9.33%) sits below the 10-year (10.24%).", "manual": false}, {"text": "Week-on-week the curve shifted down about 0.15pp on average.", "manual": false}], "inflation": [{"text": "Consumer lending continued its upward trend in the January–March quarter of FY26, with outstanding loans exceeding BDT 1.58 trillion, despite elevated lending rates and persistent inflationary pressures.", "manual": true}, {"text": "Point-to-point inflation was unchanged at 9.42%.", "manual": false}, {"text": "The 12-month average was unchanged at 8.63%.", "manual": false}], "external": [{"text": "Bangladesh's current account deficit (CAD) narrowed significantly to USD 301 million during July–May FY26, compared with USD 1.23 billion in the corresponding period of the previous fiscal year, supported by record remittance inflows and moderate import growth.", "manual": true}, {"text": "Remittances fell 87.6% to $0.35bn.", "manual": false}, {"text": "Exports were $4.20bn against imports of $5.80bn - a trade gap of $1.60bn.", "manual": false}], "reserves": [{"text": "Bangladesh's financial account posted a surplus of USD 4.16 billion during the first 11 months of FY26, marking a sharp turnaround from a USD 214 million deficit in the same period of FY25, according to Bangladesh Bank.", "manual": true}, {"text": "Gross reserves was little changed at $36.08bn (BPM6 $31.53bn).", "manual": false}], "commodity": [{"text": "Global oil prices surged more than 5% after US President Donald Trump stated that the memorandum of understanding to end the conflict with Iran was \"over,\" raising concerns over potential disruptions to Middle East oil supplies. Brent crude rose to USD 77.98 per barrel (+5.15%), while WTI crude climbed to USD 74.14 per barrel (+5.25%), the highest levels since 23 June.", "manual": true}, {"text": "Gold fell 1.0% to $4,135/oz.", "manual": false}, {"text": "Brent rose 5.0% to $75.72/bbl.", "manual": false}]}, "calendar": [{"date": "Early Jul", "event": "BBS - June & FY26 CPI inflation (point-to-point and 12-month average)"}, {"date": "Early Jul", "event": "Bangladesh Bank - month-end gross & BPM6 reserves; FY26 remittance total"}, {"date": "Mid Jul", "event": "EPB - June & FY26 export earnings and the trade balance"}, {"date": "Weekly", "event": "Bangladesh Bank - T-bill & T-bond auction cut-off yields"}, {"date": "Jul", "event": "Bangladesh Bank - Monetary Policy Statement for H1 FY27"}, {"date": "Daily", "event": "Global - term SOFR, EURIBOR, gold and Brent crude"}], "special": {"title": "Bangladesh Bank Monetary Policy Statement (H1 FY27) — Summary", "tag": "MPS27H1, Bangladesh Bank, Policy, FY 2026-27", "date": "July 04, 2026", "points": ["Policy rate held at 10.0% (unchanged since Oct 2024); SLF at 11.5%, SDF at 7.5% — contractionary stance continues into H1FY27", "Inflation: eased from 11.7% (Jul 2024) to 9.4% (May 2026); projected to moderate to ~8.9% by Dec 2026", "Growth: FY26 GDP growth ~4.14%; FY27 target 6.5% (BB forecasts 6.1%)", "Tk. 60,000 crore stimulus package for industry, agriculture & CMSMEs — expected to create ~25 lakh jobs", "Private sector credit growth slowed to 5.5% (Jun 2026); projected to recover to 8.0% by Jun 2027", "NPLs remain elevated: gross NPL ratio at 32.26% (Mar 2026); new Bank Resolution Act & Deposit Protection Act 2026 introduced", "External sector strengthened: reserves rose to $31.74B; remittances up 19.07%; exchange rate stable (~BDT 123/USD)", "Key risks: Middle East conflict, energy/fertilizer price shocks, high NPLs, weak private investment"]}};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=(n,d=2)=>n==null||isNaN(n)?"—":Number(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -412,10 +434,12 @@ function tile(k,live){
     <div class="tlab">${esc(k.ind)}</div>
     <div class="tval">${fmt(k.cur,k.dec)}${unit}</div>${chgHTML(k)}</div>`;
 }
-function statCard(k){
+function statCard(k,labelOverride,caption){
   const unit=k.unit&&k.unit!=="%"?` <span style="font-size:12px;color:var(--muted)">${esc(k.unit)}</span>`:(k.unit==="%"?"%":"");
-  return `<div class="stat"><div class="lab">${esc(k.ind)}</div>
-    <div class="val">${fmt(k.cur,k.dec)}${unit}</div>${chgHTML(k).replace('class="chg','class="d')}</div>`;
+  const lab=labelOverride||k.ind;
+  const cap=caption?`<div class="cap">${esc(caption)}</div>`:"";
+  return `<div class="stat"><div class="lab">${esc(lab)}</div>
+    <div class="val">${fmt(k.cur,k.dec)}${unit}</div>${chgHTML(k).replace('class="chg','class="d')}${cap}</div>`;
 }
 function liveTile(label,valHTML,chgHTML2){
   return `<div class="tile"><span class="tdot lv"></span><div class="tlab">${label}</div>
@@ -427,16 +451,15 @@ const byInd=n=>D.kpis.find(k=>k.ind===n)||{};
    Everything else lives in the detailed sections below. */
 function renderDashboard(){
   const essentials=[
-    "Policy (Repo) Rate","P2P Inflation","Interbank (WAR)",
+    "Policy (Repo) Rate","P2P Inflation","Interbank (WAR)","DSEX",
     "Reserve Gross","Remittance (monthly)","SOFR 3M"
   ];
   const tiles=essentials
     .filter(n=>D.kpis.some(k=>k.ind===n))
     .map(n=>tile(byInd(n))).join("");
-  // two live headline tiles
+  // one live headline tile (USD/BDT); keeps the grid even at 8
   const live=
-    `<div class="tile" id="lt-bdt"><span class="tdot lv"></span><div class="tlab">USD/BDT (live ref)</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`+
-    `<div class="tile" id="lt-btc"><span class="tdot lv"></span><div class="tlab">Bitcoin</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`;
+    `<div class="tile" id="lt-bdt"><span class="tdot lv"></span><div class="tlab">USD/BDT (live ref)</div><div class="tval">—</div><div class="chg neutral">connecting…</div></div>`;
   $("dash-tiles").innerHTML=tiles+live;
   renderMovers();
 }
@@ -487,7 +510,10 @@ function renderWeekly(){
     $("nav-special").style.display="none";
   }
   // sections — side stat cards (2-up), curated to match the deck
-  $("fx-tiles").innerHTML=["Interbank (WAR)","BC Selling (Prime)"].map(n=>statCard(byInd(n))).join("");
+  $("fx-tiles").innerHTML=
+    statCard(byInd("Interbank (WAR)"),"USD/BDT — Interbank (WAR)","Weighted-average interbank rate · Central Bank")+
+    statCard(byInd("BC Selling (Prime)"),"USD/BDT — BC Sell","Bills-for-collection selling rate · 2nd-gen commercial bank");
+  if($("eq-tiles")) $("eq-tiles").innerHTML=["DSEX","DSE30","CSEX"].map(n=>statCard(byInd(n))).join("");
   $("global-tiles").innerHTML=["SOFR 3M","EURIBOR 3M"].map(n=>statCard(byInd(n))).join("");
   $("rates-tiles").innerHTML=["Policy (Repo) Rate","Bank Rate","Call Money"].map(n=>statCard(byInd(n))).join("");
   $("yc-tiles").innerHTML=["T-Bill 91D","T-Bill 364D","T-Bond 10Y","T-Bond 20Y"].map(n=>statCard(byInd(n))).join("");
@@ -497,7 +523,7 @@ function renderWeekly(){
   $("cmd-tiles").innerHTML=["Gold","Oil (Brent)"].map(n=>statCard(byInd(n))).join("");
   // commentary notes — auto + manual, from resolved layer (fallback to live auto if absent)
   const CR = D.commentaryResolved || {};
-  for(const sec of ["fx","global","rates","ycurve","inflation","external","reserves","commodity"]){
+  for(const sec of ["fx","equities","global","rates","ycurve","inflation","external","reserves","commodity"]){
     const el=$("note-"+sec); if(!el) continue;
     let lines = CR[sec];
     if(!lines || !lines.length){ // fallback: compute in-browser if JSON is old
@@ -522,7 +548,7 @@ function autoSection(sec){
   const dir=(c,p,u="pp")=>{if(c==null||p==null)return"stood at";const d=c-p;if(Math.abs(d)<0.005)return"was unchanged at";return `${d>0?"rose":"fell"} ${Math.abs(d).toFixed(2)}${u} to`;};
   const pdir=(c,p)=>{if(c==null||p==null||p===0)return"was at";const d=(c-p)/Math.abs(p)*100;if(Math.abs(d)<0.05)return"was little changed at";return `${d>0?"rose":"fell"} ${Math.abs(d).toFixed(1)}% to`;};
   const o=[];
-  if(sec==="fx"){o.push(`The taka ${dir(g("Interbank (WAR)"),g("Interbank (WAR)","prev"),"")} ${F(g("Interbank (WAR)"))}/USD, with BC selling at ${F(g("BC Selling (Prime)"))}.`);}
+  if(sec==="fx"){o.push(`The taka ${dir(g("Interbank (WAR)"),g("Interbank (WAR)","prev"),"")} ${F(g("Interbank (WAR)"))} per USD (interbank), with the BC sell rate at ${F(g("BC Selling (Prime)"))}.`);}
   else if(sec==="global"){const s3=g("SOFR 3M"),s12=g("SOFR 12M"),e3=g("EURIBOR 3M");
     if(s3!=null&&s12!=null)o.push(`Term SOFR spans ${F(s3)}-${F(s12)}% across tenors, while EURIBOR sits lower at ${F(e3)}%+.`);
     if(s3!=null&&e3!=null)o.push(`The 3-month SOFR-EURIBOR gap is ${F(s3-e3)}pp, a live input for currency-of-borrowing decisions.`);}
@@ -549,6 +575,27 @@ function tickClocks(){
   set("clk-dhk","Asia/Dhaka");set("clk-ldn","Europe/London");set("clk-nyc","America/New_York");
 }
 setInterval(tickClocks,1000);tickClocks();
+
+/* Top-left eyebrow: "DAY | CITY" derived from the visitor's timezone (no permission prompt).
+   Falls back to "DAY | BANGLADESH" if the city can't be determined. */
+function setKick(){
+  const el=$("kick"); if(!el) return;
+  let day="";
+  try{ day=new Date().toLocaleDateString("en-US",{weekday:"long"}).toUpperCase(); }
+  catch(_){ day=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"][new Date().getDay()]; }
+  let place="BANGLADESH";
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";
+    const parts=tz.split("/");
+    let city=parts.length>1 ? parts[parts.length-1] : "";  // need a Region/City form
+    city=city.replace(/_/g," ").trim();
+    // ignore non-city zones like UTC, GMT, Etc/*
+    if(city && !/^(UTC|GMT|Etc)/i.test(tz)) place=city.toUpperCase();
+  }catch(_){}
+  el.textContent=`${day} | ${place}`;
+}
+setKick();
+setInterval(setKick,60000);  // refresh so the day flips at midnight
 
 /* ---------- interactive SVG line charts ---------- */
 const CHART_GEO={};   // stores geometry per chart for hover
@@ -618,7 +665,8 @@ function attachHover(elId){
 }
 function drawCharts(){
   const S=D.series||{}; const lab=(S.dates||[]).map(d=>d.slice(2,7));
-  lineChart("ch-fx",lab,[{name:"Interbank (WAR)",data:S.Interbank||[],color:"#1E2761"},{name:"BC Selling",data:S.BC_Selling||[],color:"#C9A227"}],{dec:2,unit:" ৳"});
+  lineChart("ch-fx",lab,[{name:"USD/BDT — Interbank (WAR)",data:S.Interbank||[],color:"#1E2761"},{name:"USD/BDT — BC Sell",data:S.BC_Selling||[],color:"#C9A227"}],{dec:2,unit:" ৳"});
+  lineChart("ch-equities",lab,[{name:"DSEX",data:S.DSEX||[],color:"#1E2761"},{name:"DSE30",data:S.DSE30||[],color:"#C9A227"},{name:"CSEX",data:S.CSEX||[],color:"#1E8E5A"}],{dec:0,unit:" pts"});
   lineChart("ch-rates",lab,[{name:"Call Money",data:S.CallMoney||[],color:"#1E2761"},{name:"Policy (Repo)",data:S.Policy||[],color:"#C9A227"}],{unit:"%"});
   lineChart("ch-infl",lab,[{name:"P2P Inflation",data:S.P2P_Infl||[],color:"#1E2761"},{name:"12M Average",data:S.Avg12M_Infl||[],color:"#C9A227"}],{unit:"%"});
   lineChart("ch-ext",lab,[{name:"Import",data:S.Import||[],color:"#1E2761"},{name:"Export",data:S.Export||[],color:"#C9A227"},{name:"Remittance",data:S.Remittance||[],color:"#1E8E5A"}],{unit:" $bn"});
