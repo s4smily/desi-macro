@@ -1,18 +1,18 @@
 {
  "meta": {
-  "weekEnding": "July 11, 2026",
+  "weekEnding": "July 18, 2026",
   "title": "The Frontier Macro",
   "subtitle": "Rates, FX, the External Sector & Global Markets",
   "preparedBy": "M Sohel Rahman | Dhaka, BGD",
   "forAudience": "For Quick Reference Only - Bangladesh & Global Markets",
-  "headline": "Bangladesh’s external sector presented a mixed picture during the first eleven months of FY26. The current account deficit narrowed sharply to USD 301 million from USD 1.23 billion in the corresponding period of the previous fiscal year, primarily driven by record-high remittance inflows. In contrast, the trade deficit widened to USD 23.98 billion from USD 19.38 billion as imports rose 6.3% year-on-year to USD 64.02 billion, while exports declined 2.0% to USD 40.04 billion. Encouragingly, the financial account recorded a notable recovery, posting a surplus of USD 4.16 billion compared with a deficit of USD 214 million during the same period of FY25."
+  "headline": "Fiscal and financial sector developments remained in focus as the IMF intensified its assessment of Bangladesh's reform agenda. A key area of discussion was the government's ambitious FY27 revenue mobilisation plan, with the Fund scrutinising the assumptions behind the BDT 6.04tn target and evaluating whether the newly announced fiscal measures would be sufficient to achieve it. The review also extended to the country's external financing position, including debt repayment commitments, the cost and composition of foreign borrowings, the availability of concessional funding, and the implications of a higher share of variable-rate debt.\n\nIn a separate development, the Bangladesh Securities and Exchange Commission introduced a broad package of regulatory changes designed to revitalise the capital market. The reforms ease the path to public listing by simplifying the IPO process and creating greater scope for direct listings by financially sound companies. The regulator also relaxed margin lending rules by allowing financing against \"B\" category stocks, a policy shift intended to improve trading activity, deepen market liquidity, and strengthen overall investor confidence."
  },
  "kpis": [
   {
    "cat": "FX",
    "ind": "Interbank (WAR)",
    "unit": null,
-   "cur": 122.85,
+   "cur": 123.3727,
    "prev": 122.85,
    "good": 0,
    "dec": 2,
@@ -34,8 +34,8 @@
    "cat": "Global",
    "ind": "SOFR 3M",
    "unit": "%",
-   "cur": 3.76264,
-   "prev": 3.75202,
+   "cur": 3.73373,
+   "prev": 3.76264,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -45,8 +45,8 @@
    "cat": "Global",
    "ind": "SOFR 6M",
    "unit": "%",
-   "cur": 3.88727,
-   "prev": 3.87192,
+   "cur": 3.84179,
+   "prev": 3.88727,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -56,8 +56,8 @@
    "cat": "Global",
    "ind": "SOFR 12M",
    "unit": "%",
-   "cur": 4.05231,
-   "prev": 4.02612,
+   "cur": 3.99175,
+   "prev": 4.05231,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -67,8 +67,8 @@
    "cat": "Global",
    "ind": "EURIBOR 3M",
    "unit": "%",
-   "cur": 2.353,
-   "prev": 2.335,
+   "cur": 2.485,
+   "prev": 2.353,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -78,8 +78,8 @@
    "cat": "Global",
    "ind": "EURIBOR 6M",
    "unit": "%",
-   "cur": 2.567,
-   "prev": 2.565,
+   "cur": 2.688,
+   "prev": 2.567,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -89,8 +89,8 @@
    "cat": "Global",
    "ind": "EURIBOR 12M",
    "unit": "%",
-   "cur": 2.737,
-   "prev": 2.733,
+   "cur": 2.876,
+   "prev": 2.737,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -122,8 +122,8 @@
    "cat": "Money",
    "ind": "Call Money",
    "unit": "%",
-   "cur": 9.56,
-   "prev": 9.61,
+   "cur": 9.64,
+   "prev": 9.56,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -133,8 +133,8 @@
    "cat": "Govt",
    "ind": "T-Bill 91D",
    "unit": "%",
-   "cur": 9.3299,
-   "prev": 9.4399,
+   "cur": 9.1699,
+   "prev": 9.3299,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -144,8 +144,8 @@
    "cat": "Govt",
    "ind": "T-Bill 182D",
    "unit": "%",
-   "cur": 9.5699,
-   "prev": 9.7098,
+   "cur": 9.3981,
+   "prev": 9.5699,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -155,8 +155,8 @@
    "cat": "Govt",
    "ind": "T-Bill 364D",
    "unit": "%",
-   "cur": 9.6298,
-   "prev": 9.74,
+   "cur": 9.57,
+   "prev": 9.6298,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -167,7 +167,7 @@
    "ind": "T-Bond 2Y",
    "unit": "%",
    "cur": 9.7085,
-   "prev": 10.43,
+   "prev": 9.7085,
    "good": null,
    "dec": 2,
    "chg": "abs",
@@ -177,7 +177,7 @@
    "cat": "Govt",
    "ind": "T-Bond 5Y",
    "unit": "%",
-   "cur": 10.3502,
+   "cur": 9.7894,
    "prev": 10.3502,
    "good": null,
    "dec": 2,
@@ -210,7 +210,7 @@
    "cat": "Inflation",
    "ind": "P2P Inflation",
    "unit": "%",
-   "cur": 9.42,
+   "cur": 9.16,
    "prev": 9.42,
    "good": 0,
    "dec": 2,
@@ -221,7 +221,7 @@
    "cat": "Inflation",
    "ind": "Inflation (12M avg)",
    "unit": "%",
-   "cur": 8.63,
+   "cur": 8.68,
    "prev": 8.63,
    "good": 0,
    "dec": 2,
@@ -254,7 +254,7 @@
    "cat": "Trade",
    "ind": "Remittance (monthly)",
    "unit": "$bn",
-   "cur": 0.349,
+   "cur": 1.154,
    "prev": null,
    "good": 1,
    "dec": 2,
@@ -287,8 +287,8 @@
    "cat": "Commodity",
    "ind": "Gold",
    "unit": "$/oz",
-   "cur": 4135.21,
-   "prev": 4175.0,
+   "cur": 4017.51,
+   "prev": 4135.21,
    "good": null,
    "dec": 0,
    "chg": "pct",
@@ -298,8 +298,8 @@
    "cat": "Commodity",
    "ind": "Oil (Brent)",
    "unit": "$/bbl",
-   "cur": 75.72,
-   "prev": 72.12,
+   "cur": 88.1,
+   "prev": 75.72,
    "good": 0,
    "dec": 2,
    "chg": "pct",
@@ -309,8 +309,8 @@
    "cat": "Equities",
    "ind": "DSEX",
    "unit": "pts",
-   "cur": 5804.0,
-   "prev": 5743.0,
+   "cur": 5900.0,
+   "prev": 5804.0,
    "good": 1,
    "dec": 2,
    "chg": "pct",
@@ -320,8 +320,8 @@
    "cat": "Equities",
    "ind": "DSE30",
    "unit": "pts",
-   "cur": 2177.0,
-   "prev": 2162.0,
+   "cur": 2227.0,
+   "prev": 2177.0,
    "good": 1,
    "dec": 2,
    "chg": "pct",
@@ -331,8 +331,8 @@
    "cat": "Equities",
    "ind": "CSEX",
    "unit": "pts",
-   "cur": 15515.0,
-   "prev": 15407.0,
+   "cur": 15814.0,
+   "prev": 15515.0,
    "good": 1,
    "dec": 2,
    "chg": "pct",
@@ -440,7 +440,7 @@
    8.71,
    9.04,
    9.42,
-   null
+   9.16
   ],
   "Avg12M_Infl": [
    10.0,
@@ -457,7 +457,7 @@
    8.74,
    8.7,
    8.63,
-   null
+   8.68
   ],
   "Import": [
    5.0,
@@ -525,7 +525,7 @@
    34.4,
    35.11,
    34.55,
-   null
+   37.578
   ],
   "Reserve_BPM6": [
    27.0,
@@ -542,7 +542,7 @@
    29.9,
    30.6,
    30.0,
-   null
+   32.93
   ],
   "Gold": [
    2380,
@@ -631,54 +631,58 @@
   ]
  },
  "commentary": {
-  "fx": "Imports increased 5.9% year-on-year to USD 67.7 billion during the period, reflecting stronger domestic demand. However, import growth remained below the pace of remittance growth. Meanwhile, exports rose by over 11% to USD 44.2 billion.",
-  "equities": "",
-  "global": "A high-level Bangladeshi delegation will travel to the United States next week to seek support from the 54 member states of the UN Economic and Social Council (ECOSOC) for Bangladesh's request to defer its graduation from Least Developed Country (LDC) status by three years.",
-  "rates": "The Bangladesh Bank has revised down its private sector credit growth target to 6.8% for December 2026 under the Monetary Policy Statement (MPS) for the first half of FY2026-27.",
-  "ycurve": "Finance Minister Amir Khosru Mahmud Chowdhury assured that depositors of the country's five troubled banks will receive 100% of their deposits along with accrued interest, ruling out any possibility of a deposit haircut.",
-  "inflation": "Consumer lending continued its upward trend in the January–March quarter of FY26, with outstanding loans exceeding BDT 1.58 trillion, despite elevated lending rates and persistent inflationary pressures.",
-  "external": "Bangladesh's current account deficit (CAD) narrowed significantly to USD 301 million during July–May FY26, compared with USD 1.23 billion in the corresponding period of the previous fiscal year, supported by record remittance inflows and moderate import growth.",
-  "reserves": "Bangladesh's financial account posted a surplus of USD 4.16 billion during the first 11 months of FY26, marking a sharp turnaround from a USD 214 million deficit in the same period of FY25, according to Bangladesh Bank.",
-  "commodity": "Global oil prices surged more than 5% after US President Donald Trump stated that the memorandum of understanding to end the conflict with Iran was \"over,\" raising concerns over potential disruptions to Middle East oil supplies. Brent crude rose to USD 77.98 per barrel (+5.15%), while WTI crude climbed to USD 74.14 per barrel (+5.25%), the highest levels since 23 June."
+  "fx": "BEPZA attracted unprecedented investment interest in FY26, receiving investment proposals worth USD 718 million, the highest in its history. The strong pipeline of commitments highlights sustained foreign investor confidence in Bangladesh's export processing zones despite an uncertain global economic backdrop.",
+  "equities": "The Bangladesh Securities and Exchange Commission (BSEC) has initiated a comprehensive reform of the IPO framework to make public listings more efficient and attractive. The proposed changes simplify regulatory requirements, expand the scope for direct listings by financially sound firms, and eliminate margin lending restrictions on \"B\" category shares, a move expected to improve market liquidity and broaden investor participation.\n\nGrameenphone declared a 105% interim cash dividend for shareholders, even as its financial performance softened during the first half of the year. The telecom operator reported lower revenue and earnings compared with the corresponding period of the previous year.",
+  "global": "Saudi Arabia has signaled stronger investment interest in Bangladesh's infrastructure sector, with a senior delegation indicating the possibility of investing up to USD 1 billion in strategic projects, including ports, railways, and other critical transport infrastructure, during discussions with Prime Minister Tarique Rahman.",
+  "rates": "Bangladesh Bank has eased foreign borrowing regulations for wholly foreign-owned manufacturers by allowing them to obtain financing from parent companies, affiliated entities, and overseas shareholders under a general approval mechanism. The policy aims to improve access to offshore funding and strengthen the country's appeal as an FDI destination.",
+  "ycurve": "",
+  "inflation": "Consumer credit continued to expand during the January–March quarter of FY26, with outstanding loans surpassing BDT 1.58 trillion. The increase came despite persistently high inflation and elevated lending rates, indicating resilient household demand for credit.",
+  "external": "The Invest Bangladesh Bill, 2026, has been approved by Parliament, clearing the way for the establishment of the Invest Bangladesh Authority. The new agency will consolidate the functions of BIDA, the PPP Authority, and BEZA into a single institution responsible for investment promotion and facilitation.",
+  "reserves": "Bangladesh's external financial position strengthened significantly during FY26, as the financial account recorded a USD 4.16 billion surplus in the first eleven months, reversing a USD 214 million deficit recorded a year earlier. The improvement reflects a notable recovery in external capital inflows.",
+  "commodity": "Bangladesh faces renewed challenges in securing long-term LNG supplies after Excelerate Energy reduced its contracted deliveries for 2026, following a similar move by QatarEnergy. With both suppliers cutting volumes, the country is expected to depend more heavily on higher-priced spot market purchases to meet domestic gas demand."
  },
  "commentaryResolved": {
   "fx": [
    {
-    "text": "Imports increased 5.9% year-on-year to USD 67.7 billion during the period, reflecting stronger domestic demand. However, import growth remained below the pace of remittance growth. Meanwhile, exports rose by over 11% to USD 44.2 billion.",
+    "text": "BEPZA attracted unprecedented investment interest in FY26, receiving investment proposals worth USD 718 million, the highest in its history. The strong pipeline of commitments highlights sustained foreign investor confidence in Bangladesh's export processing zones despite an uncertain global economic backdrop.",
     "manual": true
    },
    {
-    "text": "The taka was unchanged at 122.85 per USD (interbank), with the BC sell rate at 123.75.",
+    "text": "The taka rose 0.52 to 123.37 per USD (interbank), with the BC sell rate at 123.75.",
     "manual": false
    }
   ],
   "equities": [
    {
-    "text": "DSEX rose 1.1% to 5,804 pts.",
+    "text": "The Bangladesh Securities and Exchange Commission (BSEC) has initiated a comprehensive reform of the IPO framework to make public listings more efficient and attractive. The proposed changes simplify regulatory requirements, expand the scope for direct listings by financially sound firms, and eliminate margin lending restrictions on \"B\" category shares, a move expected to improve market liquidity and broaden investor participation.\n\nGrameenphone declared a 105% interim cash dividend for shareholders, even as its financial performance softened during the first half of the year. The telecom operator reported lower revenue and earnings compared with the corresponding period of the previous year.",
+    "manual": true
+   },
+   {
+    "text": "DSEX rose 1.7% to 5,900 pts.",
     "manual": false
    },
    {
-    "text": "DSE30 at 2,177 and CSEX at 15,515.",
+    "text": "DSE30 at 2,227 and CSEX at 15,814.",
     "manual": false
    }
   ],
   "global": [
    {
-    "text": "A high-level Bangladeshi delegation will travel to the United States next week to seek support from the 54 member states of the UN Economic and Social Council (ECOSOC) for Bangladesh's request to defer its graduation from Least Developed Country (LDC) status by three years.",
+    "text": "Saudi Arabia has signaled stronger investment interest in Bangladesh's infrastructure sector, with a senior delegation indicating the possibility of investing up to USD 1 billion in strategic projects, including ports, railways, and other critical transport infrastructure, during discussions with Prime Minister Tarique Rahman.",
     "manual": true
    },
    {
-    "text": "Term SOFR spans 3.76-4.05% across tenors, while EURIBOR sits lower at 2.35%+.",
+    "text": "Term SOFR spans 3.73-3.99% across tenors, while EURIBOR sits lower at 2.48%+.",
     "manual": false
    },
    {
-    "text": "The 3-month SOFR-EURIBOR gap is 1.41pp, a live input for currency-of-borrowing decisions.",
+    "text": "The 3-month SOFR-EURIBOR gap is 1.25pp, a live input for currency-of-borrowing decisions.",
     "manual": false
    }
   ],
   "rates": [
    {
-    "text": "The Bangladesh Bank has revised down its private sector credit growth target to 6.8% for December 2026 under the Monetary Policy Statement (MPS) for the first half of FY2026-27.",
+    "text": "Bangladesh Bank has eased foreign borrowing regulations for wholly foreign-owned manufacturers by allowing them to obtain financing from parent companies, affiliated entities, and overseas shareholders under a general approval mechanism. The policy aims to improve access to offshore funding and strengthen the country's appeal as an FDI destination.",
     "manual": true
    },
    {
@@ -686,45 +690,41 @@
     "manual": false
    },
    {
-    "text": "Call money fell 0.05pp to 9.56%.",
+    "text": "Call money rose 0.08pp to 9.64%.",
     "manual": false
    }
   ],
   "ycurve": [
    {
-    "text": "Finance Minister Amir Khosru Mahmud Chowdhury assured that depositors of the country's five troubled banks will receive 100% of their deposits along with accrued interest, ruling out any possibility of a deposit haircut.",
-    "manual": true
-   },
-   {
-    "text": "The local-currency curve is upward-sloping: the 91-day (9.33%) sits below the 10-year (10.24%).",
+    "text": "The local-currency curve is upward-sloping: the 91-day (9.17%) sits below the 10-year (10.24%).",
     "manual": false
    },
    {
-    "text": "Week-on-week the curve shifted down about 0.15pp on average.",
+    "text": "Week-on-week the curve shifted down about 0.14pp on average.",
     "manual": false
    }
   ],
   "inflation": [
    {
-    "text": "Consumer lending continued its upward trend in the January–March quarter of FY26, with outstanding loans exceeding BDT 1.58 trillion, despite elevated lending rates and persistent inflationary pressures.",
+    "text": "Consumer credit continued to expand during the January–March quarter of FY26, with outstanding loans surpassing BDT 1.58 trillion. The increase came despite persistently high inflation and elevated lending rates, indicating resilient household demand for credit.",
     "manual": true
    },
    {
-    "text": "Point-to-point inflation was unchanged at 9.42%.",
+    "text": "Point-to-point inflation fell 0.26pp to 9.16%.",
     "manual": false
    },
    {
-    "text": "The 12-month average was unchanged at 8.63%.",
+    "text": "The 12-month average rose 0.05pp to 8.68%.",
     "manual": false
    }
   ],
   "external": [
    {
-    "text": "Bangladesh's current account deficit (CAD) narrowed significantly to USD 301 million during July–May FY26, compared with USD 1.23 billion in the corresponding period of the previous fiscal year, supported by record remittance inflows and moderate import growth.",
+    "text": "The Invest Bangladesh Bill, 2026, has been approved by Parliament, clearing the way for the establishment of the Invest Bangladesh Authority. The new agency will consolidate the functions of BIDA, the PPP Authority, and BEZA into a single institution responsible for investment promotion and facilitation.",
     "manual": true
    },
    {
-    "text": "Remittances stood at $0.35bn.",
+    "text": "Remittances stood at $1.15bn.",
     "manual": false
    },
    {
@@ -734,7 +734,7 @@
   ],
   "reserves": [
    {
-    "text": "Bangladesh's financial account posted a surplus of USD 4.16 billion during the first 11 months of FY26, marking a sharp turnaround from a USD 214 million deficit in the same period of FY25, according to Bangladesh Bank.",
+    "text": "Bangladesh's external financial position strengthened significantly during FY26, as the financial account recorded a USD 4.16 billion surplus in the first eleven months, reversing a USD 214 million deficit recorded a year earlier. The improvement reflects a notable recovery in external capital inflows.",
     "manual": true
    },
    {
@@ -744,35 +744,35 @@
   ],
   "commodity": [
    {
-    "text": "Global oil prices surged more than 5% after US President Donald Trump stated that the memorandum of understanding to end the conflict with Iran was \"over,\" raising concerns over potential disruptions to Middle East oil supplies. Brent crude rose to USD 77.98 per barrel (+5.15%), while WTI crude climbed to USD 74.14 per barrel (+5.25%), the highest levels since 23 June.",
+    "text": "Bangladesh faces renewed challenges in securing long-term LNG supplies after Excelerate Energy reduced its contracted deliveries for 2026, following a similar move by QatarEnergy. With both suppliers cutting volumes, the country is expected to depend more heavily on higher-priced spot market purchases to meet domestic gas demand.",
     "manual": true
    },
    {
-    "text": "Gold fell 1.0% to $4,135/oz.",
+    "text": "Gold fell 2.8% to $4,018/oz.",
     "manual": false
    },
    {
-    "text": "Brent rose 5.0% to $75.72/bbl.",
+    "text": "Brent rose 16.3% to $88.10/bbl.",
     "manual": false
    }
   ]
  },
  "calendar": [
   {
-   "date": "Early Jul",
-   "event": "BBS - June & FY26 CPI inflation (point-to-point and 12-month average)"
+   "date": "Early Aug",
+   "event": " BBS - July CPI inflation (point-to-point and 12-month average)"
   },
   {
-   "date": "Early Jul",
-   "event": "Bangladesh Bank - month-end gross & BPM6 reserves; FY26 remittance total"
+   "date": "Early Aug",
+   "event": " Bangladesh Bank - month-end gross & BPM6 reserves; FY26 remittance total"
   },
   {
-   "date": "Mid Jul",
-   "event": "EPB - June & FY26 export earnings and the trade balance"
+   "date": " Mid Aug",
+   "event": " EPB - July & FY26 export earnings and the trade balance"
   },
   {
    "date": "Weekly",
-   "event": "Bangladesh Bank - T-bill & T-bond auction cut-off yields"
+   "event": " Bangladesh Bank - T-bill & T-bond auction cut-off yields"
   },
   {
    "date": "Jul",
@@ -780,22 +780,24 @@
   },
   {
    "date": "Daily",
-   "event": "Global - term SOFR, EURIBOR, gold and Brent crude"
+   "event": " Global - term SOFR, EURIBOR, gold and Brent crude"
   }
  ],
  "special": {
-  "title": "Bangladesh Bank Monetary Policy Statement (H1 FY27) — Summary",
-  "tag": "MPS27H1, Bangladesh Bank, Policy, FY 2026-27",
-  "date": "July 04, 2026",
+  "title": " Bangladesh Bank Eases External Borrowing Rules to Boost FDI and Industrial Investment",
+  "tag": " Bangladesh Bank, External Borrowing, FDI, Foreign Investment, Offshore Loans, Foreign-Owned Firms, EPZ, Economic Zones, Industrial Investment",
+  "date": "July 18, 2026",
   "points": [
-   "Policy rate held at 10.0% (unchanged since Oct 2024); SLF at 11.5%, SDF at 7.5% — contractionary stance continues into H1FY27",
-   "Inflation: eased from 11.7% (Jul 2024) to 9.4% (May 2026); projected to moderate to ~8.9% by Dec 2026",
-   "Growth: FY26 GDP growth ~4.14%; FY27 target 6.5% (BB forecasts 6.1%)",
-   "Tk. 60,000 crore stimulus package for industry, agriculture & CMSMEs — expected to create ~25 lakh jobs",
-   "Private sector credit growth slowed to 5.5% (Jun 2026); projected to recover to 8.0% by Jun 2027",
-   "NPLs remain elevated: gross NPL ratio at 32.26% (Mar 2026); new Bank Resolution Act & Deposit Protection Act 2026 introduced",
-   "External sector strengthened: reserves rose to $31.74B; remittances up 19.07%; exchange rate stable (~BDT 123/USD)",
-   "Key risks: Middle East conflict, energy/fertilizer price shocks, high NPLs, weak private investment"
+   " Bangladesh Bank has liberalised its external borrowing framework for wholly foreign-owned industrial enterprises to encourage greater foreign direct investment (FDI) and improve access to offshore funding.",
+   " Eligible companies can now obtain foreign loans from their parent companies, affiliated entities and overseas shareholders under a general authorisation mechanism, eliminating the need for prior case-by-case approval from the central bank.",
+   " The revised policy applies to fully foreign-owned industrial enterprises operating in Export Processing Zones (EPZs), Economic Zones (EZs), Hi-Tech Parks, as well as eligible manufacturing and service companies located outside these specialised zones.",
+   " Firms are permitted to access interest-free short-term loans with maturities of less than one year to finance working capital requirements.",
+   " Cost-bearing short-term external loans are also allowed, subject to an all-in financing cost ceiling of 3% per annum, with repayment on a bullet basis and rollover permitted for a cumulative tenor of up to three years.",
+   " Medium- and long-term foreign borrowings must be directed toward capital expenditure, including machinery imports, factory construction, technology acquisition and other eligible investment-related activities.",
+   " Trading companies remain excluded from the facility, with the revised framework intended specifically to support productive investment in industrial and service sectors.",
+   " The central bank expects the streamlined borrowing process to lower financing costs for foreign-owned businesses while reducing administrative hurdles associated with raising overseas funds.",
+   " By improving funding flexibility for multinational enterprises, the policy is designed to strengthen Bangladesh's competitiveness as an investment destination and support new FDI inflows.",
+   " The regulatory change forms part of Bangladesh Bank's broader strategy to facilitate private investment, enhance foreign capital inflows and support long-term industrial expansion through a more business-friendly external financing regime."
   ]
  }
 }
